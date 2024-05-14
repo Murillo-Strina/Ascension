@@ -7,9 +7,8 @@ public class Enemy {
     private int acc;
     private String name;
     private int spd;
-    private Hero opponent;
 
-    public Enemy(String element, int hp, int atk, int cr, int cd, int acc, String name, int spd, Hero opponent) {
+    public Enemy(String element, int hp, int atk, int cr, int cd, int acc, String name, int spd) {
         this.element = element;
         this.hp = hp;
         this.atk = atk;
@@ -18,7 +17,6 @@ public class Enemy {
         this.acc = acc;
         this.name = name;
         this.spd = spd;
-        this.opponent = opponent;
     }
 
     public String getElement() {
@@ -85,14 +83,8 @@ public class Enemy {
         this.spd = spd;
     }
 
-    public void setOpponent(Hero opponent)
+    public int Attack()
     {
-        this.opponent = opponent;
-    }
-
-    public void Attack(Hero target)
-    {
-        int tempHP = target.getHp() - this.atk;
-        target.setHp(tempHP);
+        return this.atk;
     }
 }
