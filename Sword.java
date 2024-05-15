@@ -33,7 +33,7 @@ public class Sword implements Weapon {
 
     public int WeaponSkillB() {
 
-        return 2;
+        return 1;
     }
 
     public int getAttack() {
