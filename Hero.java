@@ -1,10 +1,10 @@
 public class Hero {
     private int hp;
     private String name;
+    private int level;
 
-    public Hero(String name) {
+    public Hero() {
         this.hp = 30;
-        this.name = name;
     }
 
     public int getHp() {
@@ -21,5 +21,13 @@ public class Hero {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }
