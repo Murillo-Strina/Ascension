@@ -3,7 +3,7 @@ import java.util.Random;
 public class Sword implements Weapon {
     private int attack;
     private String name;
-    private int critRate;
+    private double critRate;
     private int critDamage;
     private int spd;
     private int additionalHp;
@@ -14,8 +14,8 @@ public class Sword implements Weapon {
 
     public Sword() {
         this.attack = 5;
-        this.name = "Sword";
-        this.critRate = 3 / 5;
+        this.name = "Espada";
+        this.critRate = 0.6;
         this.critDamage = 2 * this.attack;
         this.additionalHp = 15;
         this.accuracy = r.nextInt(101);
@@ -25,15 +25,38 @@ public class Sword implements Weapon {
     public int WeaponSkillA() {
         this.accuracy = r.nextInt(101);
         if (this.accuracy >= 30) {
-            return attack * 3 + upgrade;
+            if (CritAttack() != 1) {
+                return critDamage * 3 + upgrade;
+            } else
+                return attack * 3 + upgrade;
         } else {
             return 0;
         }
     }
 
-    public int WeaponSkillB() {
+    public int CritAttack() {
+        if (r.nextDouble(101) / 100 > critRate) {
+            return critDamage;
+        } else
+            return 1;
+    }
 
-        return 1;
+    public String StatusWeapon() {
+        String msg = "Detalhes da Arma:\n" +
+                "----------------\n" +
+                "Tipo: " + name + "\n" +
+                "Ataque: " + attack + "\n" +
+                "Taxa crítica: " + (critRate * 100) + "%\n" +
+                "HP adicional: " + additionalHp + "\n" + "----------------";
+        return msg;
+    }
+
+    public int WeaponSkillB() {
+        return this.attack *= 2;
+    }
+
+    public int NormalizeAttack() {
+        return this.attack /= 2;
     }
 
     public int getAttack() {
@@ -52,7 +75,7 @@ public class Sword implements Weapon {
         this.name = name;
     }
 
-    public int getCritRate() {
+    public double getCritRate() {
         return critRate;
     }
 
@@ -82,13 +105,6 @@ public class Sword implements Weapon {
 
     public void setAdditionalHp(int additionalHp) {
         this.additionalHp = additionalHp;
-    }
-
-    public static void main(String[] args) {
-        Sword sword = new Sword();
-        int f = sword.WeaponSkillA();
-        System.err.println(f);
-
     }
 
 }
