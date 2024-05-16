@@ -1,12 +1,14 @@
 public class Hydro implements Element
 {
-    public void ElementSkillA()
+    public int ElementSkillA()
     {
-        
+        //jato
+        return 10;
     }
 
-    public void ElementSkillB()
+    public int ElementSkillB()
     {
-
+        //cura
+        return 10;
     }
 }
