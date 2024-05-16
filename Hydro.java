@@ -1,12 +1,23 @@
 public class Hydro implements Element
 {
-    public void ElementSkillA()
+    private int damageValue;
+    private int healValue;
+
+    Public Hydro()
     {
-        
+        this.healValue = 10;
+        this.damageValue = 10;
     }
 
-    public void ElementSkillB()
+    public int ElementSkillA()
     {
+        //jato
+        return this.damageValue;
+    }
 
+    public int ElementSkillB()
+    {
+        //cura
+        return this.damageValue;
     }
 }
