@@ -15,10 +15,11 @@ public class Sword implements Weapon {
     public Sword() {
         this.attack = 5;
         this.name = "Espada";
-        this.critRate = 0.6;
+        this.critRate = 0.7;
         this.critDamage = 2 * this.attack;
         this.additionalHp = 15;
         this.accuracy = r.nextInt(101);
+        this.spd = 10;
         this.upgrade = hero.getLevel() / 5;
     }
 
@@ -47,7 +48,9 @@ public class Sword implements Weapon {
                 "Tipo: " + name + "\n" +
                 "Ataque: " + attack + "\n" +
                 "Taxa crítica: " + (critRate * 100) + "%\n" +
-                "HP adicional: " + additionalHp + "\n" + "----------------";
+                "HP adicional: " + additionalHp + "\n" +
+                "Velocidade: " + spd + "\n"
+                + "----------------";
         return msg;
     }
 
