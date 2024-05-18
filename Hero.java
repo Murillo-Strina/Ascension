@@ -5,6 +5,7 @@ public class Hero {
 
     public Hero() {
         this.hp = 30;
+        this.level = 10;
     }
 
     public int getHp() {
