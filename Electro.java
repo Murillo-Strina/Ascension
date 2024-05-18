@@ -15,7 +15,7 @@ public class Electro implements Element{
         this.stunSuccessful = false;
     }
 
-    public int ElementSkillA()
+    public int ElementSkillB()
     {
         this.accuracy = random.nextInt(101);
         if(this.accuracy >= 30)
@@ -30,7 +30,7 @@ public class Electro implements Element{
         }
     }
 
-    public int ElementSkillB()
+    public int ElementSkillA()
     {
         this.accuracy = random.nextInt(101);
         if(this.accuracy >= 30)
