@@ -7,8 +7,8 @@ public class Hero {
     private int exp;
     private int maximumEXP;
 
-    public Hero(int hp, String name, String gender) {
-        this.hp = hp;
+    public Hero(String name, String gender) {
+        this.hp = 20;
         this.name = name;
         this.gender = gender;
         this.exp = 0;
@@ -35,12 +35,12 @@ public class Hero {
 
     public String showStats() {
         upgradeStats();
-        return "================\n" + "Hero Stats:\n" +
-                "Name: " + name + "\n" +
-                "Gender: " + gender + "\n" +
-                "Level: " + level + "\n" +
+        return "================\n" + "Status do herói:\n" +
+                "Nome: " + name + "\n" +
+                "Gênero: " + gender + "\n" +
+                "Nível: " + level + "\n" +
                 "HP: " + hp + "\n" +
-                "Base Attack: " + baseAttack + "\n" +
+                "Ataque: " + baseAttack + "\n" +
                 "EXP: " + exp + "/" + maximumEXP + "\n" +
                 "================\n";
     }
