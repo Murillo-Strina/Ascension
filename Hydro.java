@@ -9,6 +9,7 @@ public class Hydro implements Element
 
     public Hydro()
     {
+        this.random = new Random();
         this.healValue = 10;
         this.damageValue = 10;
         this.accuracy = random.nextInt(101);
