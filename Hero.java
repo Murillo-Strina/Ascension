@@ -4,6 +4,7 @@ public class Hero {
     private String gender;
     private int baseAttack;
     private int level;
+    private int coins;
     private int exp;
     private int maximumEXP;
 
@@ -15,6 +16,7 @@ public class Hero {
         this.level = 1;
         this.baseAttack = 5;
         this.maximumEXP = 10;
+        this.coins = 0;
     }
 
     public int heroLevelUp() {
@@ -79,6 +81,14 @@ public class Hero {
 
     public int getExp() {
         return exp;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
     }
 
     public void setExp(int exp) {
