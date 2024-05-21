@@ -10,6 +10,7 @@ public class Geo implements Element {
 
     public Geo()
     {
+        this.random = new Random();
         this.shieldValue = 5;
         this.shieldDuration = 1;
         this.geoDamage = 10;
