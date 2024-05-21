@@ -10,7 +10,6 @@ public class Sword implements Weapon {
     private int accuracy;
     private Random r = new Random();
     private int upgrade;
-    Hero hero = new Hero();
 
     public Sword() {
         this.attack = 5;
@@ -20,7 +19,7 @@ public class Sword implements Weapon {
         this.additionalHp = 15;
         this.accuracy = r.nextInt(101);
         this.spd = 10;
-        this.upgrade = hero.getLevel() / 5;
+        //this.upgrade = hero.getLevel() / 5;
     }
 
     public int WeaponSkillA() {
