@@ -9,6 +9,7 @@ public class Electro implements Element{
 
     public Electro()
     {
+        this.random = new Random();
         this.accuracy = random.nextInt(101);
         this.electroDamage = 10;
         this.stunDuration = 2;
