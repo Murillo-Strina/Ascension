@@ -8,6 +8,7 @@ public class Dendro implements Element {
 
     public Dendro()
     {
+        this.random = new Random();
         this.accuracy = random.nextInt(101);
         this.dendroDamage = 10;
         this.enemySeeded = false;
