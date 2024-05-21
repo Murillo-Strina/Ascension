@@ -8,6 +8,7 @@ public class Cryo implements Element {
 
     public Cryo()
     {
+        this.random = new Random();
         this.accuracy = random.nextInt(101);
         this.cryoDamage = 10;
         this.enemyFrozen = false;
