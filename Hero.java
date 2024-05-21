@@ -6,6 +6,8 @@ public class Hero {
     private int level;
     private int exp;
     private int maximumEXP;
+    private int spd;
+    private Element element;
 
     public Hero(String name, String gender) {
         this.hp = 20;
@@ -15,6 +17,7 @@ public class Hero {
         this.level = 1;
         this.baseAttack = 5;
         this.maximumEXP = 10;
+        this.spd = 10;
     }
 
     public int heroLevelUp() {
