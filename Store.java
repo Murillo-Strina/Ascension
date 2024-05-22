@@ -7,8 +7,8 @@ public class Store {
     private Random r = new Random();
     List<Item> rItems = new ArrayList<>();
 
-    public Store(int slots) {
-        this.slots = slots;
+    public Store() {
+        this.slots = 4;
     }
 
     public void sortSlot() {
@@ -18,9 +18,9 @@ public class Store {
                 case 0:
                     rItems.add(new Potions());
                     break;
-                // case 1:
-                // rItems.add(new Artifacts());
-                // break;
+                case 1:
+                    rItems.add(new Artifacts());
+                    break;
                 // case 2:
                 // rItems.add(new Food());
             }
@@ -40,7 +40,7 @@ public class Store {
     }
 
     public static void main(String[] args) {
-        Store store = new Store(4);
+        Store store = new Store();
         store.sortSlot();
         System.out.println(store);
     }

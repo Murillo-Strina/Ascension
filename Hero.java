@@ -7,6 +7,8 @@ public class Hero {
     private int coins;
     private int exp;
     private int maximumEXP;
+    private int spd;
+    Food food = new Food();
 
     public Hero(String name, String gender) {
         this.hp = 20;
@@ -17,6 +19,7 @@ public class Hero {
         this.baseAttack = 5;
         this.maximumEXP = 10;
         this.coins = 0;
+        this.spd = 10;
     }
 
     public int heroLevelUp() {
@@ -45,6 +48,18 @@ public class Hero {
                 "Ataque: " + baseAttack + "\n" +
                 "EXP: " + exp + "/" + maximumEXP + "\n" +
                 "================\n";
+    }
+
+    public void increaseHp(int amount) {
+        this.hp += amount;
+    }
+
+    public void increaseSpeed(int amount) {
+        this.spd += amount;
+    }
+
+    public void increaseAttack(int amount) {
+        this.baseAttack += amount;
     }
 
     public int getHp() {

@@ -5,32 +5,44 @@ import java.util.Random;
 public class Artifacts extends Item {
     private int cost;
     private Random r = new Random();
-    private int sorter;
 
     private String[] stats = { "Taxa Crítica", "Ataque", "Velocidade", "Vida" };
-    List<String> artifact = new ArrayList<>();
+    private int[] statsValues = { 200, 100, 100, 150 };
+    private List<String> artifact = new ArrayList<>();
 
     public Artifacts() {
         super("Artefato");
-        this.sorter = r.nextInt(4);
+        sortSlot();
         this.cost = costValue();
     }
 
     public void sortSlot() {
-        for (int i = 0; i <= 4; i++) {
+        for (int i = 0; i < 4; i++) {
             int j = r.nextInt(stats.length);
             artifact.add(stats[j]);
         }
     }
 
     public int costValue() {
-        return 1;
+        int totalCost = 0;
+        for (String stat : artifact) {
+            for (int i = 0; i < stats.length; i++) {
+                if (stat.equals(stats[i])) {
+                    totalCost += statsValues[i];
+                    break;
+                }
+            }
+        }
+        return totalCost;
+    }
+
+    public String showStats() {
+        return "Detalhes do artefato:\n" + "----------------\n" + "Atributos do artefato: \n" + artifact + "\n"
+                + "Custo do artefato: " + cost + "\n----------------";
     }
 
     public static void main(String[] args) {
         Artifacts artifacts = new Artifacts();
-        artifacts.sortSlot();
-        System.out.println(artifacts.artifact);
+        System.out.println(artifacts.showStats());
     }
-
 }
