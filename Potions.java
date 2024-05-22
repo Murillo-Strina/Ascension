@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Potions {
+public class Potions extends Item {
     private String name;
     private int cost;
     private String rarity;
@@ -12,6 +12,7 @@ public class Potions {
     private int[] healingValues = { 10, 50, 100, 99999 };
 
     public Potions() {
+        super("Poção");
         this.sorter = r.nextInt(4);
         this.rarity = rarities[sorter];
         this.healingValue = healingValues[sorter];
