@@ -25,6 +25,12 @@ public class Catalysts implements Weapon {
         this.healValue = 5;
     }
 
+    public void weaponEquiped(Hero hero) {
+        hero.increaseAttack(this.attack);
+        hero.increaseMaximumHp(this.additionalHp);
+        hero.increaseSpeed(this.spd);
+    }
+
     public int WeaponSkillA() {
         this.accuracy = r.nextInt(101);
         if (this.accuracy >= 30) {

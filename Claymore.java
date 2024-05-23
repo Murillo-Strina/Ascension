@@ -25,6 +25,12 @@ public class Claymore implements Weapon {
         this.isBlocking = false;
     }
 
+    public void weaponEquiped(Hero hero) {
+        hero.increaseAttack(this.attack);
+        hero.increaseMaximumHp(this.additionalHp);
+        hero.increaseSpeed(this.spd);
+    }
+
     public int WeaponSkillB() {
         this.isBlocking = true;
         return this.spd = 100;

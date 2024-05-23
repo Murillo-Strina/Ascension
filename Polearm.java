@@ -25,6 +25,12 @@ public class Polearm implements Weapon {
         this.isBlocking = false;
     }
 
+    public void weaponEquiped(Hero hero) {
+        hero.increaseAttack(this.attack);
+        hero.increaseMaximumHp(this.additionalHp);
+        hero.increaseSpeed(this.spd);
+    }
+
     public int WeaponSkillA() {
         if (this.accuracy >= 30) {
             if (CritAttack() != 1) {
