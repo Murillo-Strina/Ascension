@@ -14,7 +14,7 @@ public class Bow implements Weapon {
     private boolean isFrozen;
     private boolean isSleeping;
     private boolean isBlind;
-    Hero hero = new Hero();
+    Hero hero = new Hero(null,null);
 
     public Bow() {
         this.attack = 10;

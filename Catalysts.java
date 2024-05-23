@@ -11,7 +11,7 @@ public class Catalysts implements Weapon {
     private Random r = new Random();
     private int upgrade;
     private int healValue;
-    Hero hero = new Hero();
+    Hero hero = new Hero(null,null);
 
     public Catalysts() {
         this.attack = 10;

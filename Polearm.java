@@ -11,7 +11,7 @@ public class Polearm implements Weapon {
     private Random r = new Random();
     private int upgrade;
     private boolean isBlocking;
-    Hero hero = new Hero();
+    Hero hero = new Hero(null,null);
 
     public Polearm() {
         this.attack = 5;

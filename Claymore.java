@@ -11,7 +11,7 @@ public class Claymore implements Weapon {
     private Random r = new Random();
     private int upgrade;
     private boolean isBlocking;
-    Hero hero = new Hero();
+    Hero hero = new Hero(null,null);
 
     public Claymore() {
         this.attack = 15;
