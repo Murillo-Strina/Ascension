@@ -43,10 +43,4 @@ public class Store {
         }
         return sb.toString();
     }
-
-    public static void main(String[] args) {
-        Store store = new Store();
-        store.sortSlot();
-        System.out.println(store.showStore());
-    }
 }
