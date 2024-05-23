@@ -35,6 +35,23 @@ public class Potions extends Item {
         }
     }
 
+    public void applyEffect(Hero hero) {
+        switch (name) {
+            case "Poção Comum":
+                hero.increaseHp(10);
+                break;
+            case "Poção Rara":
+                hero.increaseHp(50);
+                break;
+            case "Poção Épica":
+                hero.increaseHp(100);
+                break;
+            case "Poção Lendária":
+                hero.increaseHp(99999);
+                break;
+        }
+    }
+
     public String getName() {
         return name;
     }
@@ -82,12 +99,6 @@ public class Potions extends Item {
                     "Custo: " + cost + "\n" +
                     "Cura: " + healingValue + " Hp\n" +
                     "----------------";
-    }
-
-    public static void main(String[] args) {
-        Potions potion = new Potions();
-        System.out.println(potion.showPotionDetails());
-
     }
 
 }

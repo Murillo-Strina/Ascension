@@ -8,6 +8,7 @@ public class Hero {
     private int exp;
     private int maximumEXP;
     private int spd;
+    private int maximumHP;
 
     public Hero(String name, String gender) {
         this.hp = 20;
@@ -19,6 +20,7 @@ public class Hero {
         this.maximumEXP = 10;
         this.coins = 0;
         this.spd = 10;
+        this.maximumHP = 20;
     }
 
     public int heroLevelUp() {
@@ -34,10 +36,11 @@ public class Hero {
     }
 
     public void upgradeStats() {
-        this.hp += 10;
         this.baseAttack += 5;
         this.spd += 2;
         this.maximumEXP += 10;
+        this.maximumHP += 20;
+        this.hp = this.maximumHP;
     }
 
     public String showStats() {
@@ -45,7 +48,7 @@ public class Hero {
                 "Nome: " + name + "\n" +
                 "Gênero: " + gender + "\n" +
                 "Nível: " + level + "\n" +
-                "HP: " + hp + "\n" +
+                "HP: " + hp + "/" + maximumHP + "\n" +
                 "Ataque: " + baseAttack + "\n" +
                 "Velocidade: " + spd + "\n" +
                 "EXP: " + exp + "/" + maximumEXP + "\n" +
@@ -54,6 +57,13 @@ public class Hero {
 
     public void increaseHp(int amount) {
         this.hp += amount;
+        if (this.hp > this.maximumHP)
+            this.hp = this.maximumHP;
+
+    }
+
+    public void increaseMaximumHp(int amount) {
+        this.maximumHP += amount;
     }
 
     public void increaseSpeed(int amount) {

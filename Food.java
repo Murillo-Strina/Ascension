@@ -39,7 +39,7 @@ public class Food extends Item {
     public void applyEffect(Hero hero) {
         switch (type) {
             case "Frango":
-                hero.increaseHp(10);
+                hero.increaseMaximumHp(10);
                 break;
             case "Doce":
                 hero.increaseSpeed(5);
@@ -63,4 +63,5 @@ public class Food extends Item {
                 "Custo: " + cost + "\n" +
                 "----------------";
     }
+
 }
