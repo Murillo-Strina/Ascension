@@ -6,14 +6,14 @@ public class Food extends Item {
     private String type;
     private Random r = new Random();
 
-    private String[] foodTypes = { "Chicken", "Candy", "Fruit", "Golden Wine" };
+    private String[] foodTypes = { "Frango", "Doce", "Fruta", "Vinho Dourado" };
     private String[] effects = {
             "Aumenta HP adicional em 10",
             "Aumenta velocidade em 5",
             "Aumenta ataque em 5",
             "Aumenta nível em 1"
     };
-    private int[] costs = { 20, 15, 30, 100 };
+    private int[] costs = { 20, 15, 30, 200 };
 
     public Food() {
         super("Comida");
@@ -36,6 +36,25 @@ public class Food extends Item {
         return 0;
     }
 
+    public void applyEffect(Hero hero) {
+        switch (type) {
+            case "Frango":
+                hero.increaseHp(10);
+                break;
+            case "Doce":
+                hero.increaseSpeed(5);
+                break;
+            case "Fruta":
+                hero.increaseAttack(5);
+                break;
+            case "Vinho Dourado":
+                int fullExp = hero.getMaximumEXP();
+                hero.setExp(fullExp);
+                hero.heroLevelUp();
+                break;
+        }
+    }
+
     public String showFoodDetails() {
         return "Detalhes da Comida:\n" +
                 "----------------\n" +
@@ -43,10 +62,5 @@ public class Food extends Item {
                 "Efeito: " + effect + "\n" +
                 "Custo: " + cost + "\n" +
                 "----------------";
-    }
-
-    public static void main(String[] args) {
-        Food food = new Food();
-        System.out.println(food.showFoodDetails());
     }
 }

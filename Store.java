@@ -21,8 +21,8 @@ public class Store {
                 case 1:
                     rItems.add(new Artifacts());
                     break;
-                // case 2:
-                // rItems.add(new Food());
+                case 2:
+                    rItems.add(new Food());
             }
         }
     }
@@ -35,13 +35,18 @@ public class Store {
         this.slots = slots;
     }
 
-    public String toString() {
-        return rItems.toString();
+    public String showStore() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Itens na loja:\n");
+        for (Item item : rItems) {
+            sb.append(item.toString()).append("\n");
+        }
+        return sb.toString();
     }
 
     public static void main(String[] args) {
         Store store = new Store();
         store.sortSlot();
-        System.out.println(store);
+        System.out.println(store.showStore());
     }
 }
