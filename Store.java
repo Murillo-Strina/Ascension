@@ -3,10 +3,12 @@ import java.util.List;
 
 public class Store {
     private int slots;
-    List<Item> rItems = new ArrayList<>();
+    private List<Item> rItems;
 
     public Store() {
         this.slots = 3;
+        this.rItems = new ArrayList<>();
+        sortSlot();
     }
 
     public void sortSlot() {
@@ -17,12 +19,8 @@ public class Store {
         rItems.add(new Food());
     }
 
-    public int getSlots() {
-        return slots;
-    }
-
-    public void setSlots(int slots) {
-        this.slots = slots;
+    public List<Item> getItems() {
+        return rItems;
     }
 
     public String showStore() {
@@ -32,11 +30,5 @@ public class Store {
             sb.append(item.toString()).append("\n");
         }
         return sb.toString();
-    }
-
-    public static void main(String[] args) {
-        Store store = new Store();
-        store.sortSlot();
-        System.out.println(store.showStore());
     }
 }
