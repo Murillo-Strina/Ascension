@@ -12,23 +12,12 @@ public class Store {
     }
 
     public void sortSlot() {
-        rItems.clear(); // Clear previous items
+        rItems.clear();
 
-        // Add one of each item type
         rItems.add(new Potions());
         rItems.add(new Artifacts());
         rItems.add(new Food());
 
-        // If slots are more than types, fill remaining slots in order
-        while (rItems.size() < slots) {
-            rItems.add(new Potions());
-            if (rItems.size() < slots) {
-                rItems.add(new Artifacts());
-            }
-            if (rItems.size() < slots) {
-                rItems.add(new Food());
-            }
-        }
     }
 
     public List<Item> getItems() {
