@@ -15,16 +15,6 @@ public class Store {
         rItems.add(new Potions());
         rItems.add(new Artifacts());
         rItems.add(new Food());
-
-        while (rItems.size() < slots) {
-            rItems.add(new Potions());
-            if (rItems.size() < slots) {
-                rItems.add(new Artifacts());
-            }
-            if (rItems.size() < slots) {
-                rItems.add(new Food());
-            }
-        }
     }
 
     public int getSlots() {
@@ -42,5 +32,11 @@ public class Store {
             sb.append(item.toString()).append("\n");
         }
         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        Store store = new Store();
+        store.sortSlot();
+        System.out.println(store.showStore());
     }
 }
