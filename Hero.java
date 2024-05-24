@@ -18,7 +18,7 @@ public class Hero {
         this.level = 1;
         this.baseAttack = 5;
         this.maximumEXP = 10;
-        this.coins = 0;
+        this.coins = 1000;
         this.spd = 10;
         this.maximumHP = 20;
     }
