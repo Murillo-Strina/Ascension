@@ -6,7 +6,7 @@ public class Store {
     private List<Item> rItems;
 
     public Store() {
-        this.slots = 3;
+        this.slots = 4;
         this.rItems = new ArrayList<>();
         sortSlot();
     }
@@ -17,6 +17,7 @@ public class Store {
         rItems.add(new Potions());
         rItems.add(new Artifacts());
         rItems.add(new Food());
+
     }
 
     public List<Item> getItems() {
