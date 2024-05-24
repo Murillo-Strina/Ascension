@@ -6,7 +6,7 @@ public class Store {
     private List<Item> rItems;
 
     public Store() {
-        this.slots = 4;
+        this.slots = 3;
         this.rItems = new ArrayList<>();
         sortSlot();
     }
