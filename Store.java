@@ -1,28 +1,28 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Store {
     private int slots;
-    private Random r = new Random();
     List<Item> rItems = new ArrayList<>();
 
     public Store() {
-        this.slots = 4;
+        this.slots = 3;
     }
 
     public void sortSlot() {
-        for (int i = 0; i < slots; i++) {
-            int j = r.nextInt(3);
-            switch (j) {
-                case 0:
-                    rItems.add(new Potions());
-                    break;
-                case 1:
-                    rItems.add(new Artifacts());
-                    break;
-                case 2:
-                    rItems.add(new Food());
+        rItems.clear();
+
+        rItems.add(new Potions());
+        rItems.add(new Artifacts());
+        rItems.add(new Food());
+
+        while (rItems.size() < slots) {
+            rItems.add(new Potions());
+            if (rItems.size() < slots) {
+                rItems.add(new Artifacts());
+            }
+            if (rItems.size() < slots) {
+                rItems.add(new Food());
             }
         }
     }
