@@ -86,6 +86,31 @@ public class StoreScreen extends JFrame implements ActionListener{
         String itemsList = store.showStore().toString();
         String [] itemsOptions = itemsList.split("\n");
         String chooseItem = (String) JOptionPane.showInputDialog(null, "Selecione 1 item para comprar: ", "Escolha" , JOptionPane.QUESTION_MESSAGE,null,itemsOptions,itemsOptions[0]);
-        if(chooseItem != null) dispose();
+        item(chooseItem);
+        System.exit(0);
+        
+    }
+
+    private void item(String chooseItem){
+        Hero hero = new Hero("Igor", "Não binário");
+        switch (chooseItem) {
+            case "Artefato":
+                Artifacts artifacts = new Artifacts();
+                artifacts.applyEffect(hero);
+                JOptionPane.showMessageDialog(null,"Efeito aplicado!");
+                break;
+            case "Poção":
+                Potions potions = new Potions();
+                potions.applyEffect(hero);
+                JOptionPane.showMessageDialog(null,"Efeito aplicado!");
+                break;
+            case "Comida":
+                Food food = new Food();
+                food.applyEffect(hero);
+                JOptionPane.showMessageDialog(null,"Efeito aplicado!");
+            default:
+                JOptionPane.showMessageDialog(null, "Escolha uma opção válida!");
+                break;
+        }
     }
 }
