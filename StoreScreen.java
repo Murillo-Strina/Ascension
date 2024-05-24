@@ -8,10 +8,26 @@ public class StoreScreen extends JFrame implements ActionListener {
     private JTextArea showStore;
     private JButton detailPotion, detailArtifact, detailFood, selectItems;
     private Store store;
+    private Artifacts artifact;
+    private Potions potion;
+    private Food food;
+    private Hero hero;
 
     public StoreScreen() {
         super("Loja");
         store = new Store();
+        hero = new Hero(null, null);
+
+        for (Item item : store.getItems()) {
+            if (item instanceof Artifacts) {
+                artifact = (Artifacts) item;
+            } else if (item instanceof Potions) {
+                potion = (Potions) item;
+            } else if (item instanceof Food) {
+                food = (Food) item;
+            }
+        }
+
         storeTitle = new JLabel("Loja");
         storeTitle.setOpaque(true);
         storeTitle.setBackground(Color.GRAY);
@@ -69,33 +85,15 @@ public class StoreScreen extends JFrame implements ActionListener {
     }
 
     public void showArtifacts() {
-        List<Item> items = store.getItems();
-        for (Item item : items) {
-            if (item instanceof Artifacts) {
-                JOptionPane.showMessageDialog(null, ((Artifacts) item).showStats());
-                break;
-            }
-        }
+        JOptionPane.showMessageDialog(null, artifact.showStats());
     }
 
     public void showPotions() {
-        List<Item> items = store.getItems();
-        for (Item item : items) {
-            if (item instanceof Potions) {
-                JOptionPane.showMessageDialog(null, ((Potions) item).showPotionDetails());
-                break;
-            }
-        }
+        JOptionPane.showMessageDialog(null, potion.showPotionDetails());
     }
 
     public void showFoods() {
-        List<Item> items = store.getItems();
-        for (Item item : items) {
-            if (item instanceof Food) {
-                JOptionPane.showMessageDialog(null, ((Food) item).showFoodDetails());
-                break;
-            }
-        }
+        JOptionPane.showMessageDialog(null, food.showFoodDetails());
     }
 
     public void showItemsToBuy() {
@@ -103,7 +101,29 @@ public class StoreScreen extends JFrame implements ActionListener {
         String[] itemsOptions = itemsList.split("\n");
         String chooseItem = (String) JOptionPane.showInputDialog(null, "Selecione 1 item para comprar: ", "Escolha",
                 JOptionPane.QUESTION_MESSAGE, null, itemsOptions, itemsOptions[0]);
-        if (chooseItem != null)
+        if (chooseItem != null) {
+            applyItemEffect(chooseItem);
             dispose();
+        }
+    }
+
+    private void applyItemEffect(String chooseItem) {
+        switch (chooseItem) {
+            case "Artefato":
+                artifact.applyEffect(hero);
+                JOptionPane.showMessageDialog(null, "Artefato Equipado!");
+                break;
+            case "Poção":
+                potion.applyEffect(hero);
+                JOptionPane.showMessageDialog(null, "Efeito aplicado!");
+                break;
+            case "Comida":
+                food.applyEffect(hero);
+                JOptionPane.showMessageDialog(null, "Efeito aplicado!");
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Escolha uma opção válida!");
+                break;
+        }
     }
 }
