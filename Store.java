@@ -3,10 +3,12 @@ import java.util.List;
 
 public class Store {
     private int slots;
-    List<Item> rItems = new ArrayList<>();
+    private List<Item> rItems;
 
     public Store() {
         this.slots = 3;
+        this.rItems = new ArrayList<>();
+        sortSlot();
     }
 
     public void sortSlot() {
@@ -15,24 +17,10 @@ public class Store {
         rItems.add(new Potions());
         rItems.add(new Artifacts());
         rItems.add(new Food());
-
-        while (rItems.size() < slots) {
-            rItems.add(new Potions());
-            if (rItems.size() < slots) {
-                rItems.add(new Artifacts());
-            }
-            if (rItems.size() < slots) {
-                rItems.add(new Food());
-            }
-        }
     }
 
-    public int getSlots() {
-        return slots;
-    }
-
-    public void setSlots(int slots) {
-        this.slots = slots;
+    public List<Item> getItems() {
+        return rItems;
     }
 
     public String showStore() {
