@@ -86,4 +86,44 @@ public class Artifacts extends Item {
         sb.append("----------------");
         return sb.toString();
     }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public Random getR() {
+        return r;
+    }
+
+    public void setR(Random r) {
+        this.r = r;
+    }
+
+    public String[] getStats() {
+        return stats;
+    }
+
+    public void setStats(String[] stats) {
+        this.stats = stats;
+    }
+
+    public int[] getStatsValues() {
+        return statsValues;
+    }
+
+    public void setStatsValues(int[] statsValues) {
+        this.statsValues = statsValues;
+    }
+
+    public Map<String, Integer> getArtifactStats() {
+        return artifactStats;
+    }
+
+    public void setArtifactStats(Map<String, Integer> artifactStats) {
+        this.artifactStats = artifactStats;
+    }
 }

@@ -64,4 +64,60 @@ public class Food extends Item {
                 "----------------";
     }
 
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public String getEffect() {
+        return effect;
+    }
+
+    public void setEffect(String effect) {
+        this.effect = effect;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Random getR() {
+        return r;
+    }
+
+    public void setR(Random r) {
+        this.r = r;
+    }
+
+    public String[] getFoodTypes() {
+        return foodTypes;
+    }
+
+    public void setFoodTypes(String[] foodTypes) {
+        this.foodTypes = foodTypes;
+    }
+
+    public String[] getEffects() {
+        return effects;
+    }
+
+    public void setEffects(String[] effects) {
+        this.effects = effects;
+    }
+
+    public int[] getCosts() {
+        return costs;
+    }
+
+    public void setCosts(int[] costs) {
+        this.costs = costs;
+    }
+
 }
