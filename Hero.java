@@ -18,7 +18,7 @@ public class Hero {
         this.level = 1;
         this.baseAttack = 5;
         this.maximumEXP = 10;
-        this.coins = 1000;
+        this.coins = 100;
         this.spd = 10;
         this.maximumHP = 20;
     }
@@ -52,6 +52,7 @@ public class Hero {
                 "Ataque: " + baseAttack + "\n" +
                 "Velocidade: " + spd + "\n" +
                 "EXP: " + exp + "/" + maximumEXP + "\n" +
+                "Dinheiro: " + coins + "\n" +
                 "================\n";
     }
 
@@ -124,5 +125,13 @@ public class Hero {
 
     public void setCoins(int coins) {
         this.coins = coins;
+    }
+
+    public void decreaseCoins(int amount) {
+        if (amount <= coins) {
+            coins -= amount;
+        } else {
+            System.out.println("Não tem moedas suficientes");
+        }
     }
 }

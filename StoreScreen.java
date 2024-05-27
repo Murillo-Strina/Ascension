@@ -1,12 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.List;
 
 public class StoreScreen extends JFrame implements ActionListener {
     private JLabel storeTitle;
     private JTextArea showStore;
-    private JButton detailPotion, detailArtifact, detailFood, selectItems;
+    private JButton detailPotion, detailArtifact, detailFood, selectItems, showHeroStats;
     private Store store;
     private Artifacts artifact;
     private Potions potion;
@@ -16,7 +15,7 @@ public class StoreScreen extends JFrame implements ActionListener {
     public StoreScreen() {
         super("Loja");
         store = new Store();
-        hero = new Hero(null, null);
+        hero = new Hero("Name", "Gender");
 
         for (Item item : store.getItems()) {
             if (item instanceof Artifacts) {
@@ -33,37 +32,49 @@ public class StoreScreen extends JFrame implements ActionListener {
         storeTitle.setBackground(Color.GRAY);
         storeTitle.setHorizontalAlignment(SwingConstants.CENTER);
         storeTitle.setFont(new Font("Algerian", Font.PLAIN, 30));
+
+        showHeroStats = new JButton("Mostrar Status do Herói");
+        showHeroStats.addActionListener(this);
+
         showStore = new JTextArea(store.showStore());
-        showStore.setFont(new Font("Algerian", Font.PLAIN, 10));
+        showStore.setFont(new Font("Algerian", Font.PLAIN, 20)); // Increase font size here
         showStore.setEditable(false);
         showStore.setLineWrap(true);
         showStore.setWrapStyleWord(true);
+
         detailArtifact = new JButton("Detalhes do artefato");
         detailPotion = new JButton("Detalhes da poção");
         detailFood = new JButton("Detalhe da comida");
         selectItems = new JButton("Selecionar");
-        Dimension buttonSize = new Dimension(30, 50);
-        detailArtifact.setPreferredSize(buttonSize);
-        detailPotion.setPreferredSize(buttonSize);
-        detailFood.setPreferredSize(buttonSize);
-        selectItems.setPreferredSize(buttonSize);
-        Container box = getContentPane();
-        box.setLayout(new BorderLayout());
-        JPanel centerPanel = new JPanel(new BorderLayout());
-        centerPanel.add(showStore, BorderLayout.CENTER);
-        JPanel buttonsPanel = new JPanel(new GridLayout(4, 1, 10, 10));
-        box.add(storeTitle, BorderLayout.NORTH);
-        box.add(centerPanel, BorderLayout.EAST);
-        buttonsPanel.add(detailArtifact);
-        buttonsPanel.add(detailPotion);
-        buttonsPanel.add(detailFood);
-        buttonsPanel.add(selectItems);
-        box.add(buttonsPanel);
+
         detailArtifact.addActionListener(this);
         detailPotion.addActionListener(this);
         detailFood.addActionListener(this);
         selectItems.addActionListener(this);
-        setSize(600, 200);
+
+        Container box = getContentPane();
+        box.setLayout(new BorderLayout());
+
+        JPanel northPanel = new JPanel(new BorderLayout());
+        northPanel.add(storeTitle, BorderLayout.NORTH);
+        northPanel.add(showHeroStats, BorderLayout.SOUTH);
+        box.add(northPanel, BorderLayout.NORTH);
+
+        JPanel centerPanel = new JPanel(new GridLayout(1, 2));
+        JScrollPane scrollPane = new JScrollPane(showStore);
+        centerPanel.add(scrollPane);
+
+        JPanel buttonsPanel = new JPanel(new GridLayout(4, 1, 10, 10));
+        buttonsPanel.add(detailArtifact);
+        buttonsPanel.add(detailPotion);
+        buttonsPanel.add(detailFood);
+        buttonsPanel.add(selectItems);
+        centerPanel.add(buttonsPanel);
+
+        box.add(centerPanel, BorderLayout.CENTER);
+
+        setSize(800, 400);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
     }
@@ -82,48 +93,77 @@ public class StoreScreen extends JFrame implements ActionListener {
             showFoods();
         else if (e.getSource() == selectItems)
             showItemsToBuy();
+        else if (e.getSource() == showHeroStats)
+            showHeroStats();
     }
 
     public void showArtifacts() {
-        JOptionPane.showMessageDialog(null, artifact.showStats());
+        JOptionPane.showMessageDialog(this, artifact.showStats());
     }
 
     public void showPotions() {
-        JOptionPane.showMessageDialog(null, potion.showPotionDetails());
+        JOptionPane.showMessageDialog(this, potion.showPotionDetails());
     }
 
     public void showFoods() {
-        JOptionPane.showMessageDialog(null, food.showFoodDetails());
+        JOptionPane.showMessageDialog(this, food.showFoodDetails());
     }
 
     public void showItemsToBuy() {
         String itemsList = store.showStore();
         String[] itemsOptions = itemsList.split("\n");
-        String chooseItem = (String) JOptionPane.showInputDialog(null, "Selecione 1 item para comprar: ", "Escolha",
+        String chooseItem = (String) JOptionPane.showInputDialog(this, "Selecione 1 item para comprar: ", "Escolha",
                 JOptionPane.QUESTION_MESSAGE, null, itemsOptions, itemsOptions[0]);
         if (chooseItem != null) {
             applyItemEffect(chooseItem);
-            dispose();
         }
     }
 
     private void applyItemEffect(String chooseItem) {
+        int itemCost = 0;
+        boolean purchaseSuccessful = false;
+
         switch (chooseItem) {
             case "Artefato":
-                artifact.applyEffect(hero);
-                JOptionPane.showMessageDialog(null, "Artefato Equipado!");
+                itemCost = artifact.getCost();
+                if (hero.getCoins() >= itemCost) {
+                    artifact.applyEffect(hero);
+                    hero.decreaseCoins(itemCost);
+                    JOptionPane.showMessageDialog(this, "Artefato Equipado!");
+                    purchaseSuccessful = true;
+                } else {
+                    JOptionPane.showMessageDialog(this, "Moedas insuficientes!");
+                }
                 break;
             case "Poção":
-                potion.applyEffect(hero);
-                JOptionPane.showMessageDialog(null, "Efeito aplicado!");
+                itemCost = potion.getCost();
+                if (hero.getCoins() >= itemCost) {
+                    potion.applyEffect(hero);
+                    hero.decreaseCoins(itemCost);
+                    JOptionPane.showMessageDialog(this, "Efeito aplicado!");
+                    purchaseSuccessful = true;
+                } else {
+                    JOptionPane.showMessageDialog(this, "Moedas insuficientes!");
+                }
                 break;
             case "Comida":
-                food.applyEffect(hero);
-                JOptionPane.showMessageDialog(null, "Efeito aplicado!");
+                itemCost = food.getCost();
+                if (hero.getCoins() >= itemCost) {
+                    food.applyEffect(hero);
+                    hero.decreaseCoins(itemCost);
+                    JOptionPane.showMessageDialog(this, "Efeito aplicado!");
+                    purchaseSuccessful = true;
+                } else {
+                    JOptionPane.showMessageDialog(this, "Moedas insuficientes!");
+                }
                 break;
             default:
-                JOptionPane.showMessageDialog(null, "Escolha uma opção válida!");
+                JOptionPane.showMessageDialog(this, "Escolha uma opção válida!");
                 break;
         }
+    }
+
+    private void showHeroStats() {
+        JOptionPane.showMessageDialog(this, hero.showStats());
     }
 }
