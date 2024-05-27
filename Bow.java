@@ -14,7 +14,8 @@ public class Bow implements Weapon {
     private boolean isFrozen;
     private boolean isSleeping;
     private boolean isBlind;
-    Hero hero = new Hero(null,null);
+    Hero hero = new Hero(null, null);
+    StatusChecker status = new StatusChecker(null);
 
     public Bow() {
         this.attack = 10;
@@ -71,7 +72,7 @@ public class Bow implements Weapon {
             case 1:
                 System.out.println("Flecha Venenosa!");
                 if (this.accuracy >= 20) {
-                    this.isPoisoned = true;
+                    status.poisonEnemy();
                     if (CritAttack() != 1) {
                         return critDamage;
                     } else
@@ -81,7 +82,7 @@ public class Bow implements Weapon {
             case 2:
                 System.out.println("Flecha Congelante!");
                 if (this.accuracy >= 20) {
-                    this.isFrozen = true;
+                    status.freezeEnemy();
                     if (CritAttack() != 1) {
                         return critDamage;
                     } else
@@ -91,7 +92,7 @@ public class Bow implements Weapon {
             case 3:
                 System.out.println("Flecha sonífera");
                 if (this.accuracy >= 20) {
-                    this.isSleeping = true;
+                    status.putEnemyToSleep();
                     if (CritAttack() != 1) {
                         return critDamage;
                     } else
@@ -101,7 +102,7 @@ public class Bow implements Weapon {
             default:
                 System.out.println("Flecha de fumaça");
                 if (this.accuracy >= 20) {
-                    this.isBlind = true;
+                    status.blindEnemy();
                     if (CritAttack() != 1) {
                         return critDamage;
                     } else

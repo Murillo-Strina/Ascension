@@ -125,4 +125,32 @@ public class Hero {
     public void setCoins(int coins) {
         this.coins = coins;
     }
+
+    public int getBaseAttack() {
+        return baseAttack;
+    }
+
+    public void setBaseAttack(int baseAttack) {
+        this.baseAttack = baseAttack;
+    }
+
+    public void setMaximumEXP(int maximumEXP) {
+        this.maximumEXP = maximumEXP;
+    }
+
+    public int getSpd() {
+        return spd;
+    }
+
+    public void setSpd(int spd) {
+        this.spd = spd;
+    }
+
+    public int getMaximumHP() {
+        return maximumHP;
+    }
+
+    public void setMaximumHP(int maximumHP) {
+        this.maximumHP = maximumHP;
+    }
 }
