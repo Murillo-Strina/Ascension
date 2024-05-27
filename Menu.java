@@ -2,36 +2,39 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Menu extends JFrame implements ActionListener{
+public class Menu extends JFrame implements ActionListener {
     private JLabel gameTitle;
     private JButton newGame, generalScore, exit;
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == newGame) startGame();
-        else if(e.getSource() == generalScore) viewScore();
-        else if(e.getSource() == exit) System.exit(0);
-      
+        if (e.getSource() == newGame)
+            startGame();
+        else if (e.getSource() == generalScore)
+            viewScore();
+        else if (e.getSource() == exit)
+            System.exit(0);
+
     }
 
-    public Menu(){
+    public Menu() {
         super("Ascension");
         gameTitle = new JLabel("Ascension");
         gameTitle.setOpaque(true);
         gameTitle.setBackground(Color.GRAY);
         gameTitle.setHorizontalAlignment(JLabel.CENTER);
-        gameTitle.setFont(new Font("Algerian",Font.PLAIN,30));
+        gameTitle.setFont(new Font("Algerian", Font.PLAIN, 30));
         newGame = new JButton("Iniciar Aventura");
         generalScore = new JButton("Pontuação");
         exit = new JButton("Sair");
-        Dimension buttonSize = new Dimension(30,40);
+        Dimension buttonSize = new Dimension(30, 40);
         newGame.setPreferredSize(buttonSize);
         generalScore.setPreferredSize(buttonSize);
         exit.setPreferredSize(buttonSize);
         Container box = getContentPane();
         box.setLayout(new BorderLayout());
-        JPanel buttonsPanel = new JPanel(new GridLayout(3,1,10,10));
-        box.add(gameTitle,BorderLayout.NORTH);
-       
+        JPanel buttonsPanel = new JPanel(new GridLayout(3, 1, 10, 10));
+        box.add(gameTitle, BorderLayout.NORTH);
 
         buttonsPanel.add(newGame);
         buttonsPanel.add(generalScore);
@@ -40,66 +43,72 @@ public class Menu extends JFrame implements ActionListener{
         newGame.addActionListener(this);
         generalScore.addActionListener(this);
         exit.addActionListener(this);
-        setSize(500,200);
+        setSize(500, 200);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
     public static void main(String[] args) {
-     new Menu();
+        new Menu();
     }
 
-    public void startGame(){
+    public void startGame() {
         String inputName = JOptionPane.showInputDialog(null, "Nome do(a) aventureiro(a): ");
-        String inputGender = JOptionPane.showInputDialog(null,"Gênero: ");
-        if(inputName != null && inputGender != null) JOptionPane.showMessageDialog(null, "Aventureiro(a) criado!");
-        String  [] elementsList = {"Pyro", "Hydro", "Electro", "Dendro", "Cryo", "Geo"};
-        String chooseElement = (String) JOptionPane.showInputDialog(null, "Escolha o tipo do elemento que " +inputName+ " irá possuir: ", "Escolha", JOptionPane.QUESTION_MESSAGE,null,elementsList,elementsList[0]);
-        
+        String inputGender = JOptionPane.showInputDialog(null, "Gênero: ");
+        if (inputName != null && inputGender != null)
+            JOptionPane.showMessageDialog(null, "Aventureiro(a) criado!");
+        String[] elementsList = { "Pyro", "Hydro", "Electro", "Dendro", "Cryo", "Geo" };
+        String chooseElement = (String) JOptionPane.showInputDialog(null,
+                "Escolha o tipo do elemento que " + inputName + " irá possuir: ", "Escolha",
+                JOptionPane.QUESTION_MESSAGE, null, elementsList, elementsList[0]);
+
         element(chooseElement);
-        String [] weaponsList = {"Claymore", "Bow", "Catalysts", "Polearm", "Sword"};
-        String chooseWeapon = (String) JOptionPane.showInputDialog(null, "Escolha a arma que " + inputName + " irá usar", "Escolha", JOptionPane.QUESTION_MESSAGE,null,weaponsList,weaponsList[0]);
+        String[] weaponsList = { "Claymore", "Bow", "Catalysts", "Polearm", "Sword" };
+        String chooseWeapon = (String) JOptionPane.showInputDialog(null,
+                "Escolha a arma que " + inputName + " irá usar", "Escolha", JOptionPane.QUESTION_MESSAGE, null,
+                weaponsList, weaponsList[0]);
         weapon(chooseWeapon);
     }
 
-    public void viewScore(){
+    public void viewScore() {
 
     }
 
-    private void element(String chooseElement){
-        switch(chooseElement){
+    private void element(String chooseElement) {
+        switch (chooseElement) {
             case "Pyro":
-            break;
+                break;
             case "Hydro":
-            break;
+                break;
             case "Electro":
-            break;
+                break;
             case "Dendro":
-            break;
+                break;
             case "Cryo":
-            break;
+                break;
             case "Geo":
-            break;
+                break;
             default:
-            JOptionPane.showMessageDialog(null, "Escolha uma opção válida!");
+                JOptionPane.showMessageDialog(null, "Escolha uma opção válida!");
         }
     }
 
-    private void weapon(String chooseWeapon){
-        switch(chooseWeapon){
+    private void weapon(String chooseWeapon) {
+        switch (chooseWeapon) {
             case "Claymore":
-            break;
+                break;
             case "Bow":
-            break;
+                break;
             case "Catalysts":
-            break;
+                break;
             case "Polearm":
-            break;
+                break;
             case "Sword":
-            break;
+                break;
             default:
-            JOptionPane.showMessageDialog(null, "Escolha uma opção válida!");
+                JOptionPane.showMessageDialog(null, "Escolha uma opção válida!");
         }
     }
-    
+
 }

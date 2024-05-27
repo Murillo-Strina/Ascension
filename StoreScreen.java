@@ -131,6 +131,7 @@ public class StoreScreen extends JFrame implements ActionListener {
                     hero.decreaseCoins(itemCost);
                     JOptionPane.showMessageDialog(this, "Artefato Equipado!");
                     purchaseSuccessful = true;
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Moedas insuficientes!");
                 }
@@ -142,6 +143,7 @@ public class StoreScreen extends JFrame implements ActionListener {
                     hero.decreaseCoins(itemCost);
                     JOptionPane.showMessageDialog(this, "Efeito aplicado!");
                     purchaseSuccessful = true;
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Moedas insuficientes!");
                 }
@@ -153,6 +155,7 @@ public class StoreScreen extends JFrame implements ActionListener {
                     hero.decreaseCoins(itemCost);
                     JOptionPane.showMessageDialog(this, "Efeito aplicado!");
                     purchaseSuccessful = true;
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Moedas insuficientes!");
                 }
