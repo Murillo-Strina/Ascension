@@ -64,12 +64,16 @@ public class Menu extends JFrame implements ActionListener {
                 JOptionPane.QUESTION_MESSAGE, null, elementsList, elementsList[0]);
 
         element(chooseElement);
+        selectWeapon(inputName);
+       
+    }
+
+    public void selectWeapon(String adventureName){
         String[] weaponsList = { "Claymore", "Bow", "Catalysts", "Polearm", "Sword" };
-        String chooseWeapon = (String) JOptionPane.showInputDialog(null,
-                "Escolha a arma que " + inputName + " irá usar", "Escolha", JOptionPane.QUESTION_MESSAGE, null,
-                weaponsList, weaponsList[0]);
+        String chooseWeapon = (String) JOptionPane.showInputDialog(null, "Escolha a arma que " + adventureName + " irá usar", "Escolha", JOptionPane.QUESTION_MESSAGE, null, weaponsList, weaponsList[0]);
         weapon(chooseWeapon);
     }
+
 
     public void viewScore() {
 
@@ -95,19 +99,71 @@ public class Menu extends JFrame implements ActionListener {
     }
 
     private void weapon(String chooseWeapon) {
+        int choice;
         switch (chooseWeapon) {
             case "Claymore":
+                Claymore claymore = new Claymore();
+                JOptionPane.showMessageDialog(null, claymore.StatusWeapon());
+                choice = JOptionPane.showConfirmDialog(null, "Deseja escolher Claymore?");
+                if (choice == JOptionPane.YES_OPTION){
+                    JOptionPane.showMessageDialog(null, "Arma escolhida!");
+                }
+                else if (choice == JOptionPane.NO_OPTION){
+                    selectWeapon("");
+                }
+                else break;
                 break;
             case "Bow":
+                Bow bow = new Bow();
+                JOptionPane.showMessageDialog(null, bow.StatusWeapon());
+                choice = JOptionPane.showConfirmDialog(null, "Deseja escolher Bow?");
+                if (choice == JOptionPane.YES_OPTION){
+                    JOptionPane.showMessageDialog(null, "Arma escolhida!");
+                }
+                else if (choice == JOptionPane.NO_OPTION){
+                    selectWeapon("");
+                }
+                else break;
                 break;
             case "Catalysts":
+                Catalysts catalysts = new Catalysts();
+                JOptionPane.showMessageDialog(null, catalysts.StatusWeapon());
+                choice = JOptionPane.showConfirmDialog(null, "Deseja escolher Catalysts?");
+                if (choice == JOptionPane.YES_OPTION){
+                    JOptionPane.showMessageDialog(null, "Arma escolhida!");
+                }
+                else if (choice == JOptionPane.NO_OPTION){
+                    selectWeapon("");
+                }
+                else break;
                 break;
             case "Polearm":
+                Polearm polearm = new Polearm();
+                JOptionPane.showMessageDialog(null, polearm.StatusWeapon());
+                choice = JOptionPane.showConfirmDialog(null, "Deseja escolher Polearm?");
+                if (choice == JOptionPane.YES_OPTION){
+                    JOptionPane.showMessageDialog(null, "Arma escolhida!");
+                }
+                else if (choice == JOptionPane.NO_OPTION){
+                    selectWeapon("");
+                }
+                else break;
                 break;
             case "Sword":
+                Sword sword = new Sword();
+                JOptionPane.showMessageDialog(null, sword.StatusWeapon());
+                choice = JOptionPane.showConfirmDialog(null, "Deseja escolher Sword?");
+                if (choice == JOptionPane.YES_OPTION){
+                    JOptionPane.showMessageDialog(null, "Arma escolhida!");
+                }
+                else if (choice == JOptionPane.NO_OPTION){
+                    selectWeapon("");
+                }
+                else break;
                 break;
             default:
                 JOptionPane.showMessageDialog(null, "Escolha uma opção válida!");
+                selectWeapon("");
         }
     }
 
