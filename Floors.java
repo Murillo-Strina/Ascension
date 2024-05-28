@@ -20,15 +20,15 @@ public class Floors {
             this.battleSystem.setEnemy(enemy);
             while (enemy.getHealth() > 0 && hero.getHp() > 0) {
                 battleSystem.Battle(hero, enemy);
-                if (hero.getHp() <= 0) {
-                    showGameOverMessage();
-                    break;
-                } else {
-                    floor++;
-                    showStoreScreen();
-                }
+            }
+            if (hero.getHp() > 0) {
+                floor++;
+                hero.setExp(floor + 5);
+                System.out.println(hero.showStats());
+                showStoreScreen();
             }
         }
+        showGameOverMessage();
     }
 
     private Enemy generateEnemyForCurrentFloor() {
