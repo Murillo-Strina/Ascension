@@ -46,10 +46,6 @@ public class Floors {
         Floors floor = new Floors();
         Store store = new Store();
 
-        store.setStoreClosedListener(() -> {
-            floor.startAdventure();
-        });
-
         store.showStore();
     }
 }
