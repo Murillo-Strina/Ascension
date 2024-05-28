@@ -7,6 +7,10 @@ public class StatusChecker {
         this.hero = hero;
     }
 
+    public void setEnemy(Enemy enemy) {
+        this.enemy = enemy;
+    }
+
     public void checkStatusConditions() {
         if (enemy.isPoisoned()) {
             handlePoisoned();
@@ -24,18 +28,15 @@ public class StatusChecker {
             handleBlind();
             blindEnemy();
         }
-        if(enemy.isBurning())
-        {
+        if (enemy.isBurning()) {
             handleBurning();
             burnEnemy();
         }
-        if(enemy.isSeeded())
-        {
+        if (enemy.isSeeded()) {
             handleSeeded();
             growSeeds();
         }
-        if(enemy.isStunned())
-        {
+        if (enemy.isStunned()) {
             handleStunned();
             stun();
         }
@@ -58,18 +59,15 @@ public class StatusChecker {
         System.out.println(enemy.getName() + " ficou cego!\n");
     }
 
-    private void handleBurning()
-    {
+    private void handleBurning() {
         System.out.println(enemy.getName() + " está queimando!\n");
     }
 
-    private void handleSeeded()
-    {
+    private void handleSeeded() {
         System.out.println("Cresceram sementes em " + enemy.getName() + "!\n");
     }
 
-    private void handleStunned()
-    {
+    private void handleStunned() {
         System.out.println(enemy.getName() + " está atordoado!\n");
     }
 
@@ -90,24 +88,20 @@ public class StatusChecker {
         enemy.setBlind(true);
     }
 
-    public void burnEnemy()
-    {
-        enemy.setBaseAttack(enemy.getBaseAttack()/2);
+    public void burnEnemy() {
+        enemy.setBaseAttack(enemy.getBaseAttack() / 2);
     }
 
-    public void growSeeds()
-    {
+    public void growSeeds() {
         enemy.setHealth(enemy.getHealth() - 1);
         hero.increaseHp(1);
     }
 
-    public void stun()
-    {
+    public void stun() {
         enemy.setStunned(true);
     }
 
-    public void normalizeStatus()
-    {
+    public void normalizeStatus() {
         enemy.setPoisoned(false);
         enemy.setFrozen(false);
         enemy.setBlind(false);
