@@ -7,7 +7,7 @@ import  java.sql.SQLException;
 public  class ConnFactory
 {   private static final String URL  =   "jdbc:mysql://localhost:3306/player_data";
     private static final String USER =   "root";
-    private static final String PASS =   "ascension123!@";
+    private static final String PASS =   "imtdb";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String ERROBD = "Erro na conexão com o Banco de Dados: "; 
 

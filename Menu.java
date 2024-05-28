@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class Menu extends JFrame implements ActionListener {
     private JLabel gameTitle;
     private JButton newGame, generalScore, exit;
-
+    Hero hero = new Hero("","");
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == newGame)
@@ -58,6 +58,9 @@ public class Menu extends JFrame implements ActionListener {
         String inputGender = JOptionPane.showInputDialog(null, "Gênero: ");
         if (inputName != null && inputGender != null)
             JOptionPane.showMessageDialog(null, "Aventureiro(a) criado!");
+        hero.setName(inputName);
+        hero.setGender(inputGender);
+        hero.setLevel(hero.getLevel());
         String[] elementsList = { "Pyro", "Hydro", "Electro", "Dendro", "Cryo", "Geo" };
         String chooseElement = (String) JOptionPane.showInputDialog(null,
                 "Escolha o tipo do elemento que " + inputName + " irá possuir: ", "Escolha",
@@ -76,7 +79,8 @@ public class Menu extends JFrame implements ActionListener {
 
 
     public void viewScore() {
-
+        SQLPLAYER sql = new SQLPLAYER();
+        sql.Score(hero);
     }
 
     private void element(String chooseElement) {

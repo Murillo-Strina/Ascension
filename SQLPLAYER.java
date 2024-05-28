@@ -3,7 +3,7 @@ import javax.swing.JOptionPane;
 
 public class SQLPLAYER {
 
-    public static void Score(Hero uDraft)
+    public void Score(Hero uDraft)
     {  
         ArrayList<Hero> aLista;
         CrudBD  cBD     = new CrudBD();
