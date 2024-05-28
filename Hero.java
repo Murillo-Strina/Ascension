@@ -34,6 +34,16 @@ public class Hero {
         this.weapon = null;
     }
 
+    public void setWeapon(Weapon weapon)
+    {
+        this.weapon = weapon;
+    }
+
+    public Weapon getWeapon()
+    {
+        return this.weapon;
+    }
+
     public int heroLevelUp() {
         if (exp >= maximumEXP) {
             exp -= maximumEXP;
@@ -182,15 +192,6 @@ public class Hero {
         this.elementInt = elementInt;
     }
 
-    public void setWeapon(Weapon weapon)
-    {
-        this.weapon = weapon;
-    }
-
-    public Weapon getWeapon()
-    {
-        return this.weapon;
-    }
     public boolean effectApplied()
     {
         return this.effectApplied;
