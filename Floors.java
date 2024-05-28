@@ -18,9 +18,7 @@ public class Floors {
         while (hero.getHp() > 0) {
             Enemy enemy = generateEnemyForCurrentFloor();
             this.battleSystem.setEnemy(enemy);
-            while (enemy.getHealth() > 0 && hero.getHp() > 0) {
-                battleSystem.Battle(hero, enemy);
-            }
+            battleSystem.Battle(hero, enemy);
             if (hero.getHp() > 0) {
                 floor++;
                 hero.setExp(floor + 5);
@@ -45,6 +43,13 @@ public class Floors {
     }
 
     public static void main(String[] args) {
-        new Floors();
+        Floors floor = new Floors();
+        Store store = new Store();
+
+        store.setStoreClosedListener(() -> {
+            floor.startAdventure();
+        });
+
+        store.showStore();
     }
 }
