@@ -2,30 +2,27 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class SQLPLAYER {
-
-    public void Score(Hero uDraft)
-    {  
+    public void Score(Hero uDraft) {
         ArrayList<Hero> aLista;
-        CrudBD  cBD     = new CrudBD();
-        
-        clearObject();
+        CrudBD cBD = new CrudBD();
+
        
-            cBD.incluirReg(uDraft);    
-            aLista = cBD.buscarTodos();
-            for (int i = 0; i < aLista.size(); i++)
-            {   uDraft = aLista.get(i);
-                System.out.println(uDraft.getName() + "-" + uDraft.getLevel());
+
+        cBD.incluirReg(uDraft);
+        aLista = cBD.buscarTodos();
+        if(aLista.isEmpty())  clearObject();
+        else{
+            StringBuilder sb = new StringBuilder();
+            for (Hero hero : aLista) {
+                sb.append("Herói: ").append(hero.getName())
+                  .append(", Level: ").append(hero.getLevel()).append("\n");
             }
-            System.out.println("------------------------------");
-            System.exit(0);
-                    
-
-            JOptionPane.showMessageDialog(null, "Herói: " +uDraft.getName()+ "Level: " +  uDraft.getLevel() + "\n");
-           
+            
+            JOptionPane.showMessageDialog(null, sb.toString());
         }
-
-    public static  void  clearObject()
-    {   
+       
+    }
+    public static void clearObject() {
         JOptionPane.showMessageDialog(null, "Não há herói registrado");
     }
 }

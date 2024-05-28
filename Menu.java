@@ -56,11 +56,16 @@ public class Menu extends JFrame implements ActionListener {
     public void startGame() {
         String inputName = JOptionPane.showInputDialog(null, "Nome do(a) aventureiro(a): ");
         String inputGender = JOptionPane.showInputDialog(null, "Gênero: ");
-        if (inputName != null && inputGender != null)
+        if (inputName != null && !inputName.isEmpty() || inputGender != null && !inputGender.isEmpty()){
+            hero.setName(inputName);
+            hero.setGender(inputGender);
+            hero.setLevel(hero.getLevel());
             JOptionPane.showMessageDialog(null, "Aventureiro(a) criado!");
-        hero.setName(inputName);
-        hero.setGender(inputGender);
-        hero.setLevel(hero.getLevel());
+        }
+         else{
+            JOptionPane.showMessageDialog(null, "É necessário criar um nome válido!");
+            startGame();
+         }  
         String[] elementsList = { "Pyro", "Hydro", "Electro", "Dendro", "Cryo", "Geo" };
         String chooseElement = (String) JOptionPane.showInputDialog(null,
                 "Escolha o tipo do elemento que " + inputName + " irá possuir: ", "Escolha",
