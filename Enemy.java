@@ -22,7 +22,7 @@ public class Enemy {
     public Enemy(String name) {
         this.name = name;
         this.health = 30;
-        this.baseAttack = 10;
+        this.baseAttack = 5;
         this.normalAttack = this.baseAttack;
         this.maximumHP = 30;
         this.accuracy = r.nextInt(101);
@@ -173,7 +173,7 @@ public class Enemy {
 
         if(this.accuracy >= 30)
         {
-            return (this.baseAttack + 5);
+            return (this.baseAttack + 2);
         }
 
         else

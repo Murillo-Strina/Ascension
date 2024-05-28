@@ -42,35 +42,35 @@ public class StatusChecker {
     }
 
     private void handlePoisoned() {
-        System.out.println(enemy.getName() + " ficou envenenado!");
+        System.out.println(enemy.getName() + " ficou envenenado!\n");
         enemy.decreaseHealth(5);
     }
 
     private void handleFrozen() {
-        System.out.println(enemy.getName() + " está congelado!");
+        System.out.println(enemy.getName() + " está congelado!\n");
     }
 
     private void handleSleeping() {
-        System.out.println(enemy.getName() + " dormiu!");
+        System.out.println(enemy.getName() + " dormiu!\n");
     }
 
     private void handleBlind() {
-        System.out.println(enemy.getName() + " ficou cego!");
+        System.out.println(enemy.getName() + " ficou cego!\n");
     }
 
     private void handleBurning()
     {
-        System.out.println(enemy.getName() + " está queimando!");
+        System.out.println(enemy.getName() + " está queimando!\n");
     }
 
     private void handleSeeded()
     {
-        System.out.println("Cresceram sementes em " + enemy.getName() + "!");
+        System.out.println("Cresceram sementes em " + enemy.getName() + "!\n");
     }
 
     private void handleStunned()
     {
-        System.out.println(enemy.getName() + " está atordoado!");
+        System.out.println(enemy.getName() + " está atordoado!\n");
     }
 
     public void poisonEnemy() {
@@ -79,6 +79,7 @@ public class StatusChecker {
 
     public void freezeEnemy() {
         enemy.setFrozen(true);
+        enemy.setSpd(0);
     }
 
     public void putEnemyToSleep() {

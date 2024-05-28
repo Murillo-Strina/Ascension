@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Hero {
     private int hp;
     private String name;
@@ -10,8 +12,14 @@ public class Hero {
     private int spd;
     private int maximumHP;
     private int elementInt;
+    private int accuracy;
+    private Random random;
+    private boolean effectApplied;
+    private Weapon weapon;
 
     public Hero(String name, String gender) {
+        this.random = new Random();
+        this.accuracy = 0;
         this.hp = 20;
         this.name = name;
         this.gender = gender;
@@ -23,6 +31,17 @@ public class Hero {
         this.spd = 10;
         this.maximumHP = 20;
         this.elementInt = 0;
+        this.weapon = null;
+    }
+
+    public void setWeapon(Weapon weapon)
+    {
+        this.weapon = weapon;
+    }
+
+    public Weapon getWeapon()
+    {
+        return this.weapon;
     }
 
     public int heroLevelUp() {
@@ -171,5 +190,61 @@ public class Hero {
 
     public void setElementInt(int elementInt) {
         this.elementInt = elementInt;
+    }
+
+    public boolean effectApplied()
+    {
+        return this.effectApplied;
+    }
+
+    public void setApplied(boolean effectApplied)
+    {
+        this.effectApplied = effectApplied;
+    }
+
+    public int ElementSkillA() //skill genérica de dano elemental
+    {
+        this.accuracy = this.random.nextInt(101);
+        if(this.accuracy >= 30)
+        {
+            System.out.println("\nAtaque bem sucedido!");
+            return this.baseAttack * 4;
+        }
+
+        else
+        {
+            System.out.println("\nAtaque falhou!");
+            return 0;
+        }
+    }
+
+    public int ElementSkillB()
+    {
+        this.accuracy = this.random.nextInt(101);
+        if(elementInt == 4) //geo
+        {
+            return 5;
+        }
+
+        else if(elementInt == 5) //hydro
+        {
+            return 10;
+        }
+
+        else
+        {
+            if(this.accuracy >= 30)
+            {
+                System.out.println("\nAtaque bem sucedido!");
+                this.effectApplied = true;
+                return this.baseAttack * 2;
+            }
+
+            else 
+            {
+                System.out.println("\nAtaque falhou!");
+                return 0;
+            }
+        }
     }
 }
