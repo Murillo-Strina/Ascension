@@ -9,6 +9,7 @@ public class Hero {
     private int maximumEXP;
     private int spd;
     private int maximumHP;
+    private int elementInt;
 
     public Hero(String name, String gender) {
         this.hp = 20;
@@ -21,6 +22,7 @@ public class Hero {
         this.coins = 1000;
         this.spd = 10;
         this.maximumHP = 20;
+        this.elementInt = 0;
     }
 
     public int heroLevelUp() {
@@ -133,5 +135,41 @@ public class Hero {
         } else {
             System.out.println("Não tem moedas suficientes");
         }
+    }
+
+    public int getBaseAttack() {
+        return baseAttack;
+    }
+
+    public void setBaseAttack(int baseAttack) {
+        this.baseAttack = baseAttack;
+    }
+
+    public void setMaximumEXP(int maximumEXP) {
+        this.maximumEXP = maximumEXP;
+    }
+
+    public int getSpd() {
+        return spd;
+    }
+
+    public void setSpd(int spd) {
+        this.spd = spd;
+    }
+
+    public int getMaximumHP() {
+        return maximumHP;
+    }
+
+    public void setMaximumHP(int maximumHP) {
+        this.maximumHP = maximumHP;
+    }
+
+    public int getElementInt() {
+        return this.elementInt;
+    }
+
+    public void setElementInt(int elementInt) {
+        this.elementInt = elementInt;
     }
 }

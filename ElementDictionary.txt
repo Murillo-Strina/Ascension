@@ -1,0 +1,6 @@
+1 - dendro
+2 - pyro
+3 - cryo
+4 - geo
+5 - hydro
+6 - electro
