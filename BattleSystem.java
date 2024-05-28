@@ -52,11 +52,13 @@ public class BattleSystem {
                         if(this.hero.getElementInt() == 4)
                         {
                             this.hero.setHp(this.hero.getHp() + this.heroAction);
+                            System.out.println(this.hero.getName() + " ganhou " + this.heroAction + " de escudo");
                         }
 
                         else if(this.hero.getElementInt() == 5)
                         {
                             this.hero.increaseHp(this.heroAction);
+                            System.out.println(this.hero.getName() + " se curou em " + this.heroAction + " de vida");
                         }
 
                         else
@@ -80,7 +82,7 @@ public class BattleSystem {
                                     break;
                                 case 6:
                                     this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-                                    this.enemy.setFrozen(true);
+                                    this.enemy.setStunned(true);
                                     ShowEnemyHP();
                                     break;
                             }
