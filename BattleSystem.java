@@ -52,22 +52,42 @@ public class BattleSystem {
         switch (this.heroSkillChosen) {
             case 1:
                 this.heroAction = this.hero.ElementSkillA();
-                this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
                 message += "===== Heroi usou Skill 1 =====\n";
-                ShowEnemyHP();
                 break;
             case 2:
                 this.heroAction = this.hero.ElementSkillB();
+                message += "===== Heroi usou Skill 2 =====\n";
+                break;
+            case 3:
+                this.heroAction = this.hero.ElementSkillC();
+                message += "===== Heroi usou Skill 3 =====\n";
+                break;
+            case 4:
+                this.heroAction = this.hero.ElementSkillD();
+                message += "===== Heroi usou Skill 4 =====\n";
+                break;
+            default:
+                this.heroAction = 0;
+                break;
+        }
+
+        applyHeroSkillEffects();
+    }
+
+    private void applyHeroSkillEffects() {
+        switch (this.heroSkillChosen) {
+            case 1:
+                this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                ShowEnemyHP();
+                break;
+            case 2:
                 if (this.hero.getElementInt() == 4) {
                     this.hero.setHp(this.hero.getHp() + this.heroAction);
-                    message += "===== Heroi usou Skill 2 =====\n";
                     message += this.hero.getName() + " ganhou " + this.heroAction + " de escudo\n";
                 } else if (this.hero.getElementInt() == 5) {
                     this.hero.increaseHp(this.heroAction);
-                    message += "===== Heroi usou Skill 2 =====\n";
                     message += this.hero.getName() + " se curou em " + this.heroAction + " de vida\n";
                 } else {
-                    message += "===== Heroi usou Skill 2 =====\n";
                     switch (this.hero.getElementInt()) {
                         case 1:
                             this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
@@ -92,7 +112,16 @@ public class BattleSystem {
                     }
                 }
                 break;
-            // You can add cases for Skill 3 and Skill 4 similarly
+            case 3:
+                this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                message += this.hero.getName() + " causou " + this.heroAction + " de dano com Skill 3\n";
+                ShowEnemyHP();
+                break;
+            case 4:
+                this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                message += this.hero.getName() + " causou " + this.heroAction + " de dano com Skill 4\n";
+                ShowEnemyHP();
+                break;
         }
     }
 
@@ -151,7 +180,7 @@ public class BattleSystem {
     }
 
     public void startBattle() {
-        message = "";
+        message = ""; // Reset message log
         this.heroBattleSpeed = this.random.nextInt(21) + this.hero.getSpd();
         this.enemyBattleSpeed = this.random.nextInt(21) + this.enemy.getSpd();
         performTurn();

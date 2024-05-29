@@ -16,9 +16,8 @@ public class Food extends Item {
     private int[] costs = { 20, 15, 30, 200 };
 
     public Food() {
-        super("Comida");
+        super("Comida", generateCost());
         sortFood();
-        this.cost = costValue();
     }
 
     public void sortFood() {
@@ -27,13 +26,8 @@ public class Food extends Item {
         this.effect = effects[index];
     }
 
-    public int costValue() {
-        for (int i = 0; i < foodTypes.length; i++) {
-            if (type.equals(foodTypes[i])) {
-                return costs[i];
-            }
-        }
-        return 0;
+    private static int generateCost() {
+        return (int) (Math.random() * 50 + 50);
     }
 
     public void applyEffect(Hero hero) {
@@ -60,7 +54,7 @@ public class Food extends Item {
                 "----------------\n" +
                 "Tipo: " + type + "\n" +
                 "Efeito: " + effect + "\n" +
-                "Custo: " + cost + "\n" +
+                "Custo: " + generateCost() + "\n" +
                 "----------------";
     }
 

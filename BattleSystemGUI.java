@@ -22,11 +22,10 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
     }
 
     private void createGUI() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
-        // Message area at the top
         messageArea = new JTextArea(30, 40);
         messageArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(messageArea);
@@ -58,6 +57,7 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
 
         getContentPane().add(panel);
         pack();
+        setLocationRelativeTo(null); // Center the window on the screen
         setVisible(true);
     }
 
@@ -75,6 +75,13 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         battleSystem.startBattle();
         updateGUI();
         reenableButtons();
+
+        if (battleSystem.getHero().getHp() <= 0 || battleSystem.getEnemy().getHealth() <= 0) {
+            synchronized (this) {
+                this.setVisible(false);
+                this.notify();
+            }
+        }
     }
 
     public void updateGUI() {

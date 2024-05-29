@@ -8,25 +8,35 @@ public class Floors {
 
     public Floors() {
         this.hero = new Hero("Hero Name", "Hero Gender");
-        this.enemy = generateEnemyForCurrentFloor();
         this.floor = 1;
-        this.battleSystem = new BattleSystem(hero, enemy, new StatusChecker(null, hero));
         startAdventure();
     }
 
     public void startAdventure() {
         while (hero.getHp() > 0) {
             enemy = generateEnemyForCurrentFloor();
-            this.battleSystem.setEnemy(enemy);
-            battleSystem.Battle(hero, enemy);
+            this.battleSystem = new BattleSystem(hero, enemy, new StatusChecker(enemy, hero));
+            BattleSystemGUI battleGUI = new BattleSystemGUI(battleSystem);
+
+            waitForBattleToEnd(battleGUI);
+
             if (hero.getHp() > 0) {
                 floor++;
                 hero.setExp(floor + 5);
-                System.out.println(hero.showStats());
                 showStoreScreen();
             }
         }
         showGameOverMessage();
+    }
+
+    private void waitForBattleToEnd(BattleSystemGUI battleGUI) {
+        while (battleGUI.isVisible()) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private Enemy generateEnemyForCurrentFloor() {
@@ -39,17 +49,28 @@ public class Floors {
     }
 
     private void showStoreScreen() {
-        SwingUtilities.invokeLater(() -> new StoreScreen());
+        StoreScreen storeScreen = new StoreScreen(this.hero); // Pass the hero to the StoreScreen
+        storeScreen.setVisible(true);
+
+        // Wait for the store to close
+        while (storeScreen.isVisible()) {
+            try {
+                Thread.sleep(1000); // Wait for the store interaction to complete
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void showGameOverMessage() {
-        SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(null, "Game Over! Você chegou no piso " + floor,
-                "Game Over", JOptionPane.INFORMATION_MESSAGE));
+        SwingUtilities.invokeLater(() -> {
+            JOptionPane.showMessageDialog(null, "Game Over! Você chegou no piso " + floor,
+                    "Game Over", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        });
     }
 
     public static void main(String[] args) {
-        Floors floor = new Floors();
-        Store store = new Store();
-        store.showStore();
+        new Floors();
     }
 }

@@ -32,7 +32,6 @@ public class Hero {
         this.spd = 10;
         this.maximumHP = 20;
         this.elementInt = 0;
-        this.weapon = null;
         this.weaponInt = 1;
     }
 
@@ -229,6 +228,32 @@ public class Hero {
             } else {
                 return 0;
             }
+        }
+    }
+
+    public int ElementSkillC() {
+        this.accuracy = this.random.nextInt(101);
+        if (this.accuracy >= 30) {
+            if (this.weapon != null) {
+                return this.weapon.WeaponSkillA();
+            } else {
+                return this.baseAttack * 3; // Default behavior if no weapon
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    public int ElementSkillD() {
+        this.accuracy = this.random.nextInt(101);
+        if (this.accuracy >= 30) {
+            if (this.weapon != null) {
+                return this.weapon.WeaponSkillB();
+            } else {
+                return this.baseAttack * 4; // Default behavior if no weapon
+            }
+        } else {
+            return 0;
         }
     }
 }

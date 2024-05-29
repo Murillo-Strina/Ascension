@@ -19,7 +19,6 @@ public class Enemy {
     private boolean isStunned;
     private int accuracy;
     private Random r = new Random();
-    // private Hero hero;
     private static final List<String> names = Arrays.asList(
             "Allison", "Arthur", "Ana", "Alex", "Arlene", "Alberto", "Barry", "Bertha", "Bill", "Bonnie", "Bret",
             "Beryl",

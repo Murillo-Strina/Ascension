@@ -1,24 +1,22 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 public class Artifacts extends Item {
-    private int cost;
     private Random r = new Random();
-
     private String[] stats = { "Ataque", "Velocidade", "Vida" };
-    private int[] statsValues = { 200, 100, 150 };
     private Map<String, Integer> artifactStats = new HashMap<>();
 
     public Artifacts() {
-        super("Artefato");
+        super("Artefato", generateCost());
         sortSlot();
-        this.cost = costValue();
     }
 
-    public void sortSlot() {
+    private static int generateCost() {
+        return (int) (Math.random() * 100 + 500);
+    }
+
+    private void sortSlot() {
         for (String stat : stats) {
             artifactStats.put(stat, 0);
         }
@@ -42,6 +40,7 @@ public class Artifacts extends Item {
         }
     }
 
+    @Override
     public void applyEffect(Hero hero) {
         for (Map.Entry<String, Integer> entry : artifactStats.entrySet()) {
             String stat = entry.getKey();
@@ -60,21 +59,6 @@ public class Artifacts extends Item {
         }
     }
 
-    public int costValue() {
-        int totalCost = 0;
-        for (Map.Entry<String, Integer> entry : artifactStats.entrySet()) {
-            String stat = entry.getKey();
-            int value = entry.getValue();
-            for (int i = 0; i < stats.length; i++) {
-                if (stat.equals(stats[i])) {
-                    totalCost += value * statsValues[i];
-                    break;
-                }
-            }
-        }
-        return totalCost;
-    }
-
     public String showStats() {
         StringBuilder sb = new StringBuilder();
         sb.append("Detalhes do artefato:\n");
@@ -82,48 +66,8 @@ public class Artifacts extends Item {
         for (Map.Entry<String, Integer> entry : artifactStats.entrySet()) {
             sb.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
         }
-        sb.append("Custo do artefato: ").append(cost).append("\n");
+        sb.append("Custo do artefato: ").append(generateCost()).append("\n");
         sb.append("----------------");
         return sb.toString();
-    }
-
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
-
-    public Random getR() {
-        return r;
-    }
-
-    public void setR(Random r) {
-        this.r = r;
-    }
-
-    public String[] getStats() {
-        return stats;
-    }
-
-    public void setStats(String[] stats) {
-        this.stats = stats;
-    }
-
-    public int[] getStatsValues() {
-        return statsValues;
-    }
-
-    public void setStatsValues(int[] statsValues) {
-        this.statsValues = statsValues;
-    }
-
-    public Map<String, Integer> getArtifactStats() {
-        return artifactStats;
-    }
-
-    public void setArtifactStats(Map<String, Integer> artifactStats) {
-        this.artifactStats = artifactStats;
     }
 }
