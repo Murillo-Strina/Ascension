@@ -32,13 +32,11 @@ public class Enemy {
         this.isBlind = false;
     }
 
-    public void setNormalAtk(int normalAttack)
-    {
+    public void setNormalAtk(int normalAttack) {
         this.normalAttack = normalAttack;
     }
 
-    public int getNormalAtk()
-    {
+    public int getNormalAtk() {
         return this.normalAttack;
     }
 
@@ -126,93 +124,63 @@ public class Enemy {
         this.maximumHP = maximumHP;
     }
 
-    public void setAccuracy(int accuracy)
-    {
+    public void setAccuracy(int accuracy) {
         this.accuracy = accuracy;
     }
 
-    public int getAccuracy()
-    {
+    public int getAccuracy() {
         return this.accuracy;
     }
 
-    public int basicAttack()
-    {
-        if(this.isBlind)
-        {
+    public int basicAttack() {
+        if (this.isBlind) {
             this.accuracy = 0;
-        }
-
-        else
-        {
+        } else {
             this.accuracy = this.r.nextInt(101);
         }
 
-        if(this.accuracy >= 30)
-        {
-            System.out.println("\nAtaque bem sucedido!");
+        if (this.accuracy >= 30) {
             return this.baseAttack;
-        }
-
-        else
-        {
-            System.out.println("\nAtaque falhou!");
+        } else {
             return 0;
         }
     }
 
-    public int elementalSkill()
-    {
-        if(this.isBlind)
-        {
+    public int elementalSkill() {
+        if (this.isBlind) {
             this.accuracy = 0;
-        }
-
-        else
-        {
+        } else {
             this.accuracy = this.r.nextInt(101);
         }
 
-        if(this.accuracy >= 30)
-        {
-            System.out.println("\nAtaque bem sucedido!");
+        if (this.accuracy >= 30) {
             return (this.baseAttack + 2);
-        }
-
-        else
-        {
-            System.out.println("\nAtaque falhou!");
+        } else {
             return 0;
         }
     }
 
-    public boolean isBurning()
-    {
+    public boolean isBurning() {
         return this.isBurning;
     }
 
-    public void setBurning(boolean isBurning)
-    {
+    public void setBurning(boolean isBurning) {
         this.isBurning = isBurning;
     }
 
-    public boolean isSeeded()
-    {
+    public boolean isSeeded() {
         return this.isSeeded;
     }
 
-    public void setSeeded(boolean isSeeded)
-    {
+    public void setSeeded(boolean isSeeded) {
         this.isSeeded = isSeeded;
     }
 
-    public boolean isStunned()
-    {
+    public boolean isStunned() {
         return this.isStunned;
     }
 
-    public void setStunned(boolean isStunned)
-    {
+    public void setStunned(boolean isStunned) {
         this.isStunned = isStunned;
     }
 }
