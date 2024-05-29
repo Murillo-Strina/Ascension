@@ -36,23 +36,19 @@ public class Hero {
         this.weaponInt = 1;
     }
 
-    public void setWeaponInt(int weaponInt)
-    {
+    public void setWeaponInt(int weaponInt) {
         this.weaponInt = weaponInt;
     }
 
-    public int getWeaponInt()
-    {
+    public int getWeaponInt() {
         return this.weaponInt;
     }
 
-    public void setWeapon(Weapon weapon)
-    {
+    public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
 
-    public Weapon getWeapon()
-    {
+    public Weapon getWeapon() {
         return this.weapon;
     }
 
@@ -93,7 +89,6 @@ public class Hero {
         this.hp += amount;
         if (this.hp > this.maximumHP)
             this.hp = this.maximumHP;
-
     }
 
     public void increaseMaximumHp(int amount) {
@@ -204,80 +199,36 @@ public class Hero {
         this.elementInt = elementInt;
     }
 
-    public boolean effectApplied()
-    {
+    public boolean effectApplied() {
         return this.effectApplied;
     }
 
-    public void setApplied(boolean effectApplied)
-    {
+    public void setApplied(boolean effectApplied) {
         this.effectApplied = effectApplied;
     }
 
-    public int ElementSkillA() //skill genérica de dano elemental
-    {
+    public int ElementSkillA() {
         this.accuracy = this.random.nextInt(101);
-        if(this.accuracy >= 30)
-        {
-            System.out.println("\nAtaque bem sucedido!");
+        if (this.accuracy >= 30) {
             return this.baseAttack * 4;
-        }
-
-        else
-        {
-            System.out.println("\nAtaque falhou!");
+        } else {
             return 0;
         }
     }
 
-    public int ElementSkillB()
-    {
+    public int ElementSkillB() {
         this.accuracy = this.random.nextInt(101);
-        if(this.elementInt == 4) //geo
-        {
+        if (this.elementInt == 4) { // geo
             return 5;
-        }
-
-        else if(this.elementInt == 5) //hydro
-        {
+        } else if (this.elementInt == 5) { // hydro
             return 10;
-        }
-
-        else
-        {
-            if(this.accuracy >= 30)
-            {
-                System.out.println("\nAtaque bem sucedido!");
+        } else {
+            if (this.accuracy >= 30) {
                 this.effectApplied = true;
                 return this.baseAttack * 2;
-            }
-
-            else 
-            {
-                System.out.println("\nAtaque falhou!");
+            } else {
                 return 0;
             }
         }
-    }
-
-    public int WeaponSkillA()
-    {
-        this.accuracy = this.random.nextInt(101);
-        if(this.accuracy >= 30)
-        {
-            System.out.println("\nAtaque bem sucedido!");
-            return this.baseAttack * 4;
-        }
-
-        else
-        {
-            System.out.println("\nAtaque falhou!");
-            return 0;
-        }
-    }
-
-    public void WeaponSkillB()
-    {
-
     }
 }
