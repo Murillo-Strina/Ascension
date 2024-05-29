@@ -1,0 +1,19 @@
+player skills:
+1 - weapon ability A
+2 - weapon ability B
+3 - element ability A
+4 - element ability B
+elements:
+1 - dendro
+2 - pyro
+3 - cryo
+4 - geo
+5 - hydro
+6 - electro
+
+weapons:
+1 - sword;
+2 - claymore
+3 - catalyst
+4 - bow
+5 - polearm

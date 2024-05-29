@@ -43,11 +43,21 @@ public class BattleSystem {
                 switch(this.heroSkillChosen)
                 {
                     case 1:
-                        this.heroAction = this.hero.ElementSkillA();
+                        this.heroAction = this.hero.WeaponSkillA();
                         this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
                         ShowEnemyHP();
                         break;
                     case 2:
+                        this.heroAction = this.hero.getWeapon().WeaponSkillB();
+                        this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                        ShowEnemyHP();
+                        break;
+                    case 3:
+                        this.heroAction = this.hero.ElementSkillA();
+                        this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                        ShowEnemyHP();
+                        break;
+                    case 4:
                         this.heroAction = this.hero.ElementSkillB();
                         if(this.hero.getElementInt() == 4)
                         {
@@ -151,11 +161,21 @@ public class BattleSystem {
                 switch(this.heroSkillChosen)
                 {
                     case 1:
-                        this.heroAction = this.hero.ElementSkillA();
+                        this.heroAction = this.hero.getWeapon().WeaponSkillA();
                         this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
                         ShowEnemyHP();
                         break;
                     case 2:
+                        this.heroAction = this.hero.getWeapon().WeaponSkillB();
+                        this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                        ShowEnemyHP();
+                        break;
+                    case 3:
+                        this.heroAction = this.hero.ElementSkillA();
+                        this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                        ShowEnemyHP();
+                        break;
+                    case 4:
                         this.heroAction = this.hero.ElementSkillB();
                         if(this.hero.getElementInt() == 4)
                         {
