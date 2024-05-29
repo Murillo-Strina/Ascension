@@ -79,10 +79,6 @@ public class StoreScreen extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new StoreScreen());
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == detailArtifact)
