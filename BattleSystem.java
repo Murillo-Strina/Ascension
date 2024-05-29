@@ -24,8 +24,114 @@ public class BattleSystem {
         this.heroSkillChosen = 0;
         this.heroAction = 0;
         this.enemyAction = 0;
-        this.hero.setElementInt(5);
         this.message = "";
+    }
+
+    public void setEnemy(Enemy enemy) {
+        this.enemy = enemy;
+        this.statusChecker.setEnemy(enemy);
+    }
+
+    public void performTurn() {
+        statusChecker.normalizeStatus();
+        if (this.heroBattleSpeed >= this.enemyBattleSpeed) {
+            heroTurn();
+            if (this.enemy.getHealth() > 0) {
+                enemyTurn();
+            }
+        } else {
+            enemyTurn();
+            if (this.hero.getHp() > 0) {
+                heroTurn();
+            }
+        }
+        this.statusChecker.checkStatusConditions();
+    }
+
+    private void heroTurn() {
+        switch (this.heroSkillChosen) {
+            case 1:
+                this.heroAction = this.hero.ElementSkillA();
+                this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                message += "===== Heroi usou Skill 1 =====\n";
+                ShowEnemyHP();
+                break;
+            case 2:
+                this.heroAction = this.hero.ElementSkillB();
+                if (this.hero.getElementInt() == 4) {
+                    this.hero.setHp(this.hero.getHp() + this.heroAction);
+                    message += "===== Heroi usou Skill 2 =====\n";
+                    message += this.hero.getName() + " ganhou " + this.heroAction + " de escudo\n";
+                } else if (this.hero.getElementInt() == 5) {
+                    this.hero.increaseHp(this.heroAction);
+                    message += "===== Heroi usou Skill 2 =====\n";
+                    message += this.hero.getName() + " se curou em " + this.heroAction + " de vida\n";
+                } else {
+                    message += "===== Heroi usou Skill 2 =====\n";
+                    switch (this.hero.getElementInt()) {
+                        case 1:
+                            this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                            this.enemy.setSeeded(true);
+                            ShowEnemyHP();
+                            break;
+                        case 2:
+                            this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                            this.enemy.setBurning(true);
+                            ShowEnemyHP();
+                            break;
+                        case 3:
+                            this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                            this.enemy.setFrozen(true);
+                            ShowEnemyHP();
+                            break;
+                        case 4:
+                            this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                            this.enemy.setStunned(true);
+                            ShowEnemyHP();
+                            break;
+                    }
+                }
+                break;
+            // You can add cases for Skill 3 and Skill 4 similarly
+        }
+    }
+
+    private void enemyTurn() {
+        if (!this.enemy.isStunned()) {
+            this.enemySkillChosen = this.random.nextInt(2) + 1;
+            message += "\n===== " + this.enemy.getName() + " usou a ação " + this.enemySkillChosen + " =====\n";
+            if (this.enemySkillChosen == 1) {
+                this.enemyAction = this.enemy.basicAttack();
+                this.hero.setHp(this.hero.getHp() - this.enemyAction);
+                ShowHeroHP();
+            } else {
+                this.enemyAction = this.enemy.elementalSkill();
+                this.hero.setHp(this.hero.getHp() - this.enemyAction);
+                ShowHeroHP();
+            }
+        }
+    }
+
+    private void ShowEnemyHP() {
+        if (this.enemy.getHealth() <= 0) {
+            message += this.enemy.getName() + " tomou " + this.heroAction + " de dano! Vida atual: 0/"
+                    + this.enemy.getMaximumHP() + "\n";
+            message += this.hero.getName() + " venceu a batalha!\n";
+        } else {
+            message += this.enemy.getName() + " tomou " + this.heroAction + " de dano! Vida atual: "
+                    + this.enemy.getHealth() + "/" + this.enemy.getMaximumHP() + "\n";
+        }
+    }
+
+    private void ShowHeroHP() {
+        if (this.hero.getHp() <= 0) {
+            message += this.hero.getName() + " tomou " + this.enemyAction + " de dano! Vida atual: 0/"
+                    + this.hero.getMaximumHP() + "\n";
+            message += this.enemy.getName() + " venceu a batalha!\n";
+        } else {
+            message += this.hero.getName() + " tomou " + this.enemyAction + " de dano! Vida atual: "
+                    + this.hero.getHp() + "/" + this.hero.getMaximumHP() + "\n";
+        }
     }
 
     public Hero getHero() {
@@ -40,124 +146,14 @@ public class BattleSystem {
         return message;
     }
 
-    public void setHeroElement(int element) {
-        this.hero.setElementInt(element);
-    }
-
     public void setHeroSkill(int skill) {
         this.heroSkillChosen = skill;
     }
 
     public void startBattle() {
+        message = "";
         this.heroBattleSpeed = this.random.nextInt(21) + this.hero.getSpd();
         this.enemyBattleSpeed = this.random.nextInt(21) + this.enemy.getSpd();
-        battleTurn();
-    }
-
-    private void battleTurn() {
-        if (this.hero.getHp() > 0 && this.enemy.getHealth() > 0) {
-            if (this.heroBattleSpeed >= this.enemyBattleSpeed) {
-                heroTurn();
-                if (this.enemy.getHealth() > 0) {
-                    enemyTurn();
-                }
-            } else {
-                enemyTurn();
-                if (this.hero.getHp() > 0) {
-                    heroTurn();
-                }
-            }
-        }
-    }
-
-    private void heroTurn() {
-        statusChecker.normalizeStatus();
-        performHeroSkill();
-        statusChecker.checkStatusConditions();
-    }
-
-    private void enemyTurn() {
-        statusChecker.checkStatusConditions();
-        if (this.enemy.getHealth() > 0 && !this.enemy.isStunned()) {
-            this.enemySkillChosen = this.random.nextInt(2) + 1;
-            message = "\n" + this.enemy.getName() + " usou a ação " + this.enemySkillChosen;
-            performEnemySkill();
-        }
-    }
-
-    private void performHeroSkill() {
-        switch (this.heroSkillChosen) {
-            case 1:
-                this.heroAction = this.hero.getWeapon().WeaponSkillA();
-                break;
-            case 2:
-                this.heroAction = this.hero.getWeapon().WeaponSkillB();
-                break;
-            case 3:
-                this.heroAction = this.hero.ElementSkillA();
-                break;
-            case 4:
-                this.heroAction = this.hero.ElementSkillB();
-                if (this.hero.getElementInt() == 4) {
-                    this.hero.setHp(this.hero.getHp() + this.heroAction);
-                    message = this.hero.getName() + " ganhou " + this.heroAction + " de escudo";
-                } else if (this.hero.getElementInt() == 5) {
-                    this.hero.increaseHp(this.heroAction);
-                    message = this.hero.getName() + " se curou em " + this.heroAction + " de vida";
-                } else {
-                    applyElementEffect();
-                }
-                return;
-        }
-        this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-        showEnemyHP();
-    }
-
-    private void applyElementEffect() {
-        switch (this.hero.getElementInt()) {
-            case 1:
-                this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-                this.enemy.setSeeded(true);
-                break;
-            case 2:
-                this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-                this.enemy.setBurning(true);
-                break;
-            case 3:
-                this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-                this.enemy.setFrozen(true);
-                break;
-            case 6:
-                this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-                this.enemy.setStunned(true);
-                break;
-        }
-        showEnemyHP();
-    }
-
-    private void performEnemySkill() {
-        if (this.enemySkillChosen == 1) {
-            this.enemyAction = this.enemy.basicAttack();
-        } else {
-            this.enemyAction = this.enemy.elementalSkill();
-        }
-        this.hero.setHp(this.hero.getHp() - this.enemyAction);
-        showHeroHP();
-    }
-
-    private void showEnemyHP() {
-        if (this.enemy.getHealth() <= 0) {
-            message = this.enemy.getName() + " tomou " + this.heroAction + " de dano! Vida atual: 0/" + this.enemy.getMaximumHP();
-        } else {
-            message = this.enemy.getName() + " tomou " + this.heroAction + " de dano! Vida atual: " + this.enemy.getHealth() + "/" + this.enemy.getMaximumHP();
-        }
-    }
-
-    private void showHeroHP() {
-        if (this.hero.getHp() <= 0) {
-            message = this.hero.getName() + " tomou " + this.enemyAction + " de dano! Vida atual: 0/" + this.hero.getMaximumHP();
-        } else {
-            message = this.hero.getName() + " tomou " + this.enemyAction + " de dano! Vida atual: " + this.hero.getHp() + "/" + this.hero.getMaximumHP();
-        }
+        performTurn();
     }
 }

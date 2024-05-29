@@ -11,7 +11,7 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
     private JButton skill2Button;
     private JButton skill3Button;
     private JButton skill4Button;
-    private JLabel messageLabel;
+    private JTextArea messageArea;
 
     private BattleSystem battleSystem;
 
@@ -26,15 +26,20 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
-        // Create hero HP label
-        heroHPLabel = new JLabel("Hero HP: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
-        panel.add(heroHPLabel, BorderLayout.NORTH);
+        // Message area at the top
+        messageArea = new JTextArea(30, 40);
+        messageArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(messageArea);
+        panel.add(scrollPane, BorderLayout.NORTH);
 
-        // Create enemy HP label
-        enemyHPLabel = new JLabel("Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
-        panel.add(enemyHPLabel, BorderLayout.SOUTH);
+        heroHPLabel = new JLabel(
+                "Hero HP: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
+        panel.add(heroHPLabel, BorderLayout.WEST);
 
-        // Create skill buttons
+        enemyHPLabel = new JLabel(
+                "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
+        panel.add(enemyHPLabel, BorderLayout.EAST);
+
         JPanel skillPanel = new JPanel();
         skillPanel.setLayout(new GridLayout(1, 4));
         skill1Button = new JButton("Skill 1");
@@ -50,10 +55,6 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         skill4Button.addActionListener(this);
         skillPanel.add(skill4Button);
         panel.add(skillPanel, BorderLayout.CENTER);
-
-        // Create message label
-        messageLabel = new JLabel("");
-        panel.add(messageLabel, BorderLayout.EAST);
 
         getContentPane().add(panel);
         pack();
@@ -73,11 +74,20 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         }
         battleSystem.startBattle();
         updateGUI();
+        reenableButtons();
     }
 
     public void updateGUI() {
         heroHPLabel.setText("Hero HP: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
-        enemyHPLabel.setText("Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
-        messageLabel.setText(battleSystem.getMessage());
+        enemyHPLabel.setText(
+                "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
+        messageArea.setText(battleSystem.getMessage());
+    }
+
+    private void reenableButtons() {
+        skill1Button.setEnabled(true);
+        skill2Button.setEnabled(true);
+        skill3Button.setEnabled(true);
+        skill4Button.setEnabled(true);
     }
 }

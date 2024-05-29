@@ -7,8 +7,8 @@ public class Floors {
     private BattleSystem battleSystem;
 
     public Floors() {
-        this.hero = new Hero(null, null);
-        this.enemy = new Enemy();
+        this.hero = new Hero("Hero Name", "Hero Gender");
+        this.enemy = generateEnemyForCurrentFloor();
         this.floor = 1;
         this.battleSystem = new BattleSystem(hero, enemy, new StatusChecker(null, hero));
         startAdventure();
@@ -16,7 +16,7 @@ public class Floors {
 
     public void startAdventure() {
         while (hero.getHp() > 0) {
-            Enemy enemy = generateEnemyForCurrentFloor();
+            enemy = generateEnemyForCurrentFloor();
             this.battleSystem.setEnemy(enemy);
             battleSystem.Battle(hero, enemy);
             if (hero.getHp() > 0) {
@@ -30,7 +30,12 @@ public class Floors {
     }
 
     private Enemy generateEnemyForCurrentFloor() {
-        return new Enemy();
+        Enemy enemy = new Enemy();
+        enemy.setLevel(floor);
+        enemy.setHealth(30 + (floor * 5));
+        enemy.setBaseAttack(5 + (floor * 2));
+        enemy.setMaximumHP(enemy.getHealth());
+        return enemy;
     }
 
     private void showStoreScreen() {
@@ -45,7 +50,6 @@ public class Floors {
     public static void main(String[] args) {
         Floors floor = new Floors();
         Store store = new Store();
-
         store.showStore();
     }
 }
