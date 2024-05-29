@@ -150,11 +150,13 @@ public class Enemy {
 
         if(this.accuracy >= 30)
         {
+            System.out.println("\nAtaque bem sucedido!");
             return this.baseAttack;
         }
 
         else
         {
+            System.out.println("\nAtaque falhou!");
             return 0;
         }
     }
@@ -173,11 +175,13 @@ public class Enemy {
 
         if(this.accuracy >= 30)
         {
+            System.out.println("\nAtaque bem sucedido!");
             return (this.baseAttack + 2);
         }
 
         else
         {
+            System.out.println("\nAtaque falhou!");
             return 0;
         }
     }

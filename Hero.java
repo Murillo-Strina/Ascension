@@ -16,6 +16,7 @@ public class Hero {
     private Random random;
     private boolean effectApplied;
     private Weapon weapon;
+    private int weaponInt;
 
     public Hero(String name, String gender) {
         this.random = new Random();
@@ -32,6 +33,17 @@ public class Hero {
         this.maximumHP = 20;
         this.elementInt = 0;
         this.weapon = null;
+        this.weaponInt = 1;
+    }
+
+    public void setWeaponInt(int weaponInt)
+    {
+        this.weaponInt = weaponInt;
+    }
+
+    public int getWeaponInt()
+    {
+        return this.weaponInt;
     }
 
     public void setWeapon(Weapon weapon)
@@ -221,12 +233,12 @@ public class Hero {
     public int ElementSkillB()
     {
         this.accuracy = this.random.nextInt(101);
-        if(elementInt == 4) //geo
+        if(this.elementInt == 4) //geo
         {
             return 5;
         }
 
-        else if(elementInt == 5) //hydro
+        else if(this.elementInt == 5) //hydro
         {
             return 10;
         }
@@ -246,5 +258,26 @@ public class Hero {
                 return 0;
             }
         }
+    }
+
+    public int WeaponSkillA()
+    {
+        this.accuracy = this.random.nextInt(101);
+        if(this.accuracy >= 30)
+        {
+            System.out.println("\nAtaque bem sucedido!");
+            return this.baseAttack * 4;
+        }
+
+        else
+        {
+            System.out.println("\nAtaque falhou!");
+            return 0;
+        }
+    }
+
+    public void WeaponSkillB()
+    {
+
     }
 }
