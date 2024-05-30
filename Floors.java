@@ -1,16 +1,13 @@
 import javax.swing.*;
-import java.util.Random;
 
 public class Floors {
     private Hero hero;
     private Enemy enemy;
     private int floor;
     private BattleSystem battleSystem;
-    private Random r;
 
-    public Floors() {
-        this.hero = new Hero("Hero Name", "Hero Gender");
-        this.r = new Random();
+    public Floors(Hero hero) {
+        this.hero = hero;
         this.floor = 1;
         startAdventure();
     }
@@ -19,14 +16,15 @@ public class Floors {
         while (hero.getHp() > 0) {
             enemy = generateEnemyForCurrentFloor();
             this.battleSystem = new BattleSystem(hero, enemy, new StatusChecker(enemy, hero));
-            BattleSystemGUI battleGUI = new BattleSystemGUI(battleSystem, floor); // Passando o piso
+            BattleSystemGUI battleGUI = new BattleSystemGUI(battleSystem, floor);
 
             waitForBattleToEnd(battleGUI);
 
             if (hero.getHp() > 0) {
                 floor++;
                 hero.setExp(floor + 5);
-                hero.increaseMoney(r.nextInt(501));
+                if (hero.getExp()  >= hero.getMaximumEXP())
+                    hero.heroLevelUp();
                 showStoreScreen();
             }
         }

@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class Hero {
     private int hp;
     private String name;
@@ -56,15 +58,12 @@ public class Hero {
     }
 
     public int heroLevelUp() {
-        if (exp >= maximumEXP) {
-            exp -= maximumEXP;
-            level += 1;
-            upgradeStats();
-            exp = 0;
-            return level;
-        } else {
-            return 0;
-        }
+        exp = 0;
+        level += 1;
+        upgradeStats();
+        exp = 0;
+        JOptionPane.showMessageDialog(null, "Parabéns! " + name + " subiu para o nível " + level);
+        return level;
     }
 
     public void upgradeStats() {

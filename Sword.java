@@ -10,7 +10,7 @@ public class Sword implements Weapon {
     private int accuracy;
     private Random r = new Random();
     private int upgrade;
-    Hero hero = new Hero("Roberto", "Boy");
+    Hero hero = new Hero("", "");
 
     public Sword() {
         this.attack = 5;

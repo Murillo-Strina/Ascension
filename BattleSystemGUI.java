@@ -7,7 +7,7 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
     private JPanel panel;
     private JLabel heroHPLabel;
     private JLabel enemyHPLabel;
-    private JLabel floorLabel; // Novo rótulo para mostrar o andar
+    private JLabel floorLabel;
     private JButton skill1Button;
     private JButton skill2Button;
     private JButton skill3Button;
@@ -42,8 +42,9 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
                 "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
         panel.add(enemyHPLabel, BorderLayout.EAST);
 
-        floorLabel = new JLabel("Floor: " + floor); // Configurando o rótulo do andar
-        panel.add(floorLabel, BorderLayout.CENTER); // Adicionando o rótulo ao painel
+        floorLabel = new JLabel("Floor: " + floor);
+        floorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(floorLabel, BorderLayout.CENTER);
 
         JPanel skillPanel = new JPanel();
         skillPanel.setLayout(new GridLayout(1, 4));
@@ -95,7 +96,7 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         enemyHPLabel.setText(
                 "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
         messageArea.setText(battleSystem.getMessage());
-        floorLabel.setText("Floor: " + floor); // Atualizando o rótulo do andar
+        floorLabel.setText("Floor: " + floor);
     }
 
     private void reenableButtons() {
