@@ -23,7 +23,7 @@ public class Floors {
             if (hero.getHp() > 0) {
                 floor++;
                 hero.setExp(floor + 5);
-                if (hero.getExp()  >= hero.getMaximumEXP())
+                if (hero.getExp() >= hero.getMaximumEXP())
                     hero.heroLevelUp();
                 showStoreScreen();
             }

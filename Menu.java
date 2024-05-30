@@ -120,8 +120,8 @@ public class Menu extends JFrame implements ActionListener {
                     hero.setWeapon(claymore);
                     hero.setWeaponInt(2);
                     JOptionPane.showMessageDialog(null, "Arma escolhida!");
-                    new Floors(hero);
-                    this.dispose();
+                    this.dispose(); // Close the menu
+                    new Floors(hero); // Start adventure
                 } else if (choice == JOptionPane.NO_OPTION) {
                     selectWeapon("");
                 }
