@@ -13,10 +13,10 @@ public class Food extends Item {
             "Aumenta ataque em 5",
             "Aumenta nível em 1"
     };
-    private int[] costs = { 20, 15, 30, 200 };
 
     public Food() {
         super("Comida", generateCost());
+        this.setCost(cost);
         sortFood();
     }
 
@@ -47,15 +47,6 @@ public class Food extends Item {
                 hero.heroLevelUp();
                 break;
         }
-    }
-
-    public String showFoodDetails() {
-        return "Detalhes da Comida:\n" +
-                "----------------\n" +
-                "Tipo: " + type + "\n" +
-                "Efeito: " + effect + "\n" +
-                "Custo: " + generateCost() + "\n" +
-                "----------------";
     }
 
     public int getCost() {
@@ -106,12 +97,12 @@ public class Food extends Item {
         this.effects = effects;
     }
 
-    public int[] getCosts() {
-        return costs;
-    }
-
-    public void setCosts(int[] costs) {
-        this.costs = costs;
+    public String showFoodDetails() {
+        return "Detalhes da Comida:\n" +
+                "----------------\n" +
+                "Tipo: " + type + "\n" +
+                "Efeito: " + effect + "\n" +
+                "----------------";
     }
 
 }

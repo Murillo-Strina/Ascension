@@ -9,6 +9,7 @@ public class Artifacts extends Item {
 
     public Artifacts() {
         super("Artefato", generateCost());
+        this.setCost(generateCost());
         sortSlot();
     }
 
@@ -59,14 +60,14 @@ public class Artifacts extends Item {
         }
     }
 
-    public String showStats() {
+    public String showArtifactDetails() {
         StringBuilder sb = new StringBuilder();
         sb.append("Detalhes do artefato:\n");
         sb.append("----------------\n");
         for (Map.Entry<String, Integer> entry : artifactStats.entrySet()) {
             sb.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
         }
-        sb.append("Custo do artefato: ").append(generateCost()).append("\n");
+        sb.append("Custo do artefato: ").append(getCost()).append("\n");
         sb.append("----------------");
         return sb.toString();
     }

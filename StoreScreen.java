@@ -86,7 +86,7 @@ public class StoreScreen extends JFrame implements ActionListener {
     public void showArtifacts() {
         for (Item item : store.getItems()) {
             if (item instanceof Artifacts) {
-                JOptionPane.showMessageDialog(this, ((Artifacts) item).showStats());
+                JOptionPane.showMessageDialog(this, ((Artifacts) item).showArtifactDetails());
                 break;
             }
         }
