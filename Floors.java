@@ -17,7 +17,9 @@ public class Floors {
             enemy = generateEnemyForCurrentFloor();
             this.battleSystem = new BattleSystem(hero, enemy, new StatusChecker(enemy, hero));
             BattleSystemGUI battleGUI = new BattleSystemGUI(battleSystem, floor);
-
+            // System.out.println(hero.showStats());
+            // System.out.println(hero.getWeaponInt());
+            // System.out.println(hero.getElementInt());
             waitForBattleToEnd(battleGUI);
 
             if (hero.getHp() > 0) {

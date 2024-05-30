@@ -32,32 +32,32 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         messageArea = new JTextArea(30, 40);
         messageArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(messageArea);
-        panel.add(scrollPane, BorderLayout.NORTH);
+        panel.add(scrollPane, BorderLayout.CENTER);
 
+        JPanel statusPanel = new JPanel();
+        statusPanel.setLayout(new GridLayout(1, 3));
         heroHPLabel = new JLabel(
                 "Hero HP: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
-        panel.add(heroHPLabel, BorderLayout.WEST);
-
         enemyHPLabel = new JLabel(
                 "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
-        panel.add(enemyHPLabel, BorderLayout.EAST);
-
         floorLabel = new JLabel("Floor: " + floor);
-        floorLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(floorLabel, BorderLayout.CENTER);
+        statusPanel.add(heroHPLabel);
+        statusPanel.add(floorLabel);
+        statusPanel.add(enemyHPLabel);
+        panel.add(statusPanel, BorderLayout.NORTH);
 
         JPanel skillPanel = new JPanel();
         skillPanel.setLayout(new GridLayout(1, 4));
-        skill1Button = new JButton("Skill 1");
+        skill1Button = new JButton("Elemental 1");
         skill1Button.addActionListener(this);
         skillPanel.add(skill1Button);
-        skill2Button = new JButton("Skill 2");
+        skill2Button = new JButton("Elemental 2");
         skill2Button.addActionListener(this);
         skillPanel.add(skill2Button);
-        skill3Button = new JButton("Skill 3");
+        skill3Button = new JButton("Arma 1");
         skill3Button.addActionListener(this);
         skillPanel.add(skill3Button);
-        skill4Button = new JButton("Skill 4");
+        skill4Button = new JButton("Arma 2");
         skill4Button.addActionListener(this);
         skillPanel.add(skill4Button);
         panel.add(skillPanel, BorderLayout.SOUTH);

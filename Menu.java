@@ -120,7 +120,7 @@ public class Menu extends JFrame implements ActionListener {
                     hero.setWeapon(claymore);
                     hero.setWeaponInt(2);
                     JOptionPane.showMessageDialog(null, "Arma escolhida!");
-                    this.dispose(); // Close the menu
+                    this.dispose();
                     new Floors(hero); // Start adventure
                 } else if (choice == JOptionPane.NO_OPTION) {
                     selectWeapon("");
@@ -134,8 +134,8 @@ public class Menu extends JFrame implements ActionListener {
                     hero.setWeapon(bow);
                     hero.setWeaponInt(4);
                     JOptionPane.showMessageDialog(null, "Arma escolhida!");
-                    new Floors(hero);
                     this.dispose();
+                    new Floors(hero); // Start adventure
                 } else if (choice == JOptionPane.NO_OPTION) {
                     selectWeapon("");
                 }
@@ -148,8 +148,8 @@ public class Menu extends JFrame implements ActionListener {
                     hero.setWeapon(catalysts);
                     hero.setWeaponInt(3);
                     JOptionPane.showMessageDialog(null, "Arma escolhida!");
-                    new Floors(hero);
                     this.dispose();
+                    new Floors(hero); // Start adventure
                 } else if (choice == JOptionPane.NO_OPTION) {
                     selectWeapon("");
                 }
@@ -162,8 +162,8 @@ public class Menu extends JFrame implements ActionListener {
                     hero.setWeapon(polearm);
                     hero.setWeaponInt(5);
                     JOptionPane.showMessageDialog(null, "Arma escolhida!");
-                    new Floors(hero);
                     this.dispose();
+                    new Floors(hero); // Start adventure
                 } else if (choice == JOptionPane.NO_OPTION) {
                     selectWeapon("");
                 }
@@ -176,8 +176,8 @@ public class Menu extends JFrame implements ActionListener {
                     hero.setWeapon(sword);
                     hero.setWeaponInt(1);
                     JOptionPane.showMessageDialog(null, "Arma escolhida!");
-                    new Floors(hero);
                     this.dispose();
+                    new Floors(hero); // Start adventure
                 } else if (choice == JOptionPane.NO_OPTION) {
                     selectWeapon("");
                 }

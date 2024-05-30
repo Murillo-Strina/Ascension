@@ -34,27 +34,7 @@ public class Hero {
         this.spd = 10;
         this.maximumHP = 20;
         this.elementInt = 0;
-        this.weaponInt = 1;
-    }
-
-    public void setWeaponInt(int weaponInt) {
-        this.weaponInt = weaponInt;
-    }
-
-    public int getWeaponInt() {
-        return this.weaponInt;
-    }
-
-    public int increaseMoney(int amount) {
-        return this.coins += amount;
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
-
-    public Weapon getWeapon() {
-        return this.weapon;
+        this.weaponInt = getWeaponInt();
     }
 
     public int heroLevelUp() {
@@ -259,4 +239,25 @@ public class Hero {
             return 0;
         }
     }
+
+    public void setWeaponInt(int weaponInt) {
+        this.weaponInt = weaponInt;
+    }
+
+    public int getWeaponInt() {
+        return this.weaponInt;
+    }
+
+    public int increaseMoney(int amount) {
+        return this.coins += amount;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public Weapon getWeapon() {
+        return this.weapon;
+    }
+
 }
