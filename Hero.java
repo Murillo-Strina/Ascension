@@ -43,6 +43,10 @@ public class Hero {
         return this.weaponInt;
     }
 
+    public int increaseMoney(int amount) {
+        return this.coins += amount;
+    }
+
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }

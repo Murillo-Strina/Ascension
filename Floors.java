@@ -1,13 +1,16 @@
 import javax.swing.*;
+import java.util.Random;
 
 public class Floors {
     private Hero hero;
     private Enemy enemy;
     private int floor;
     private BattleSystem battleSystem;
+    private Random r;
 
     public Floors() {
         this.hero = new Hero("Hero Name", "Hero Gender");
+        this.r = new Random();
         this.floor = 1;
         startAdventure();
     }
@@ -16,13 +19,14 @@ public class Floors {
         while (hero.getHp() > 0) {
             enemy = generateEnemyForCurrentFloor();
             this.battleSystem = new BattleSystem(hero, enemy, new StatusChecker(enemy, hero));
-            BattleSystemGUI battleGUI = new BattleSystemGUI(battleSystem);
+            BattleSystemGUI battleGUI = new BattleSystemGUI(battleSystem, floor); // Passando o piso
 
             waitForBattleToEnd(battleGUI);
 
             if (hero.getHp() > 0) {
                 floor++;
                 hero.setExp(floor + 5);
+                hero.increaseMoney(r.nextInt(501));
                 showStoreScreen();
             }
         }
@@ -49,13 +53,12 @@ public class Floors {
     }
 
     private void showStoreScreen() {
-        StoreScreen storeScreen = new StoreScreen(this.hero); // Pass the hero to the StoreScreen
+        StoreScreen storeScreen = new StoreScreen(this.hero);
         storeScreen.setVisible(true);
 
-        // Wait for the store to close
         while (storeScreen.isVisible()) {
             try {
-                Thread.sleep(1000); // Wait for the store interaction to complete
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -68,9 +71,5 @@ public class Floors {
                     "Game Over", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         });
-    }
-
-    public static void main(String[] args) {
-        new Floors();
     }
 }

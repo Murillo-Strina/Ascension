@@ -7,6 +7,7 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
     private JPanel panel;
     private JLabel heroHPLabel;
     private JLabel enemyHPLabel;
+    private JLabel floorLabel; // Novo rótulo para mostrar o andar
     private JButton skill1Button;
     private JButton skill2Button;
     private JButton skill3Button;
@@ -14,10 +15,12 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
     private JTextArea messageArea;
 
     private BattleSystem battleSystem;
+    private int floor;
 
-    public BattleSystemGUI(BattleSystem battleSystem) {
+    public BattleSystemGUI(BattleSystem battleSystem, int floor) {
         super("Batalha");
         this.battleSystem = battleSystem;
+        this.floor = floor;
         createGUI();
     }
 
@@ -39,6 +42,9 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
                 "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
         panel.add(enemyHPLabel, BorderLayout.EAST);
 
+        floorLabel = new JLabel("Floor: " + floor); // Configurando o rótulo do andar
+        panel.add(floorLabel, BorderLayout.CENTER); // Adicionando o rótulo ao painel
+
         JPanel skillPanel = new JPanel();
         skillPanel.setLayout(new GridLayout(1, 4));
         skill1Button = new JButton("Skill 1");
@@ -53,11 +59,11 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         skill4Button = new JButton("Skill 4");
         skill4Button.addActionListener(this);
         skillPanel.add(skill4Button);
-        panel.add(skillPanel, BorderLayout.CENTER);
+        panel.add(skillPanel, BorderLayout.SOUTH);
 
         getContentPane().add(panel);
         pack();
-        setLocationRelativeTo(null); // Center the window on the screen
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -89,6 +95,7 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         enemyHPLabel.setText(
                 "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
         messageArea.setText(battleSystem.getMessage());
+        floorLabel.setText("Floor: " + floor); // Atualizando o rótulo do andar
     }
 
     private void reenableButtons() {
