@@ -1,6 +1,5 @@
 import javax.swing.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 public class Floors {
     private Hero hero;
@@ -34,7 +33,8 @@ public class Floors {
                 public void windowClosed(WindowEvent e) {
                     if (hero.getHp() > 0) {
                         floor++;
-                        hero.setExp(floor + 5);
+                        hero.increaseEXP(floor + 5);
+                        hero.increaseMoney(floor * 100);
                         if (hero.getExp() >= hero.getMaximumEXP()) {
                             hero.heroLevelUp();
                         }

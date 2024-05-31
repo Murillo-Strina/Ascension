@@ -77,6 +77,10 @@ public class Hero {
         this.maximumHP += amount;
     }
 
+    public void increaseEXP(int amount) {
+        this.exp += amount;
+    }
+
     public void increaseSpeed(int amount) {
         this.spd += amount;
     }

@@ -11,7 +11,7 @@ public class BattleSystem {
     private int heroSkillChosen;
     private int heroAction;
     private int enemyAction;
-    private String message;
+    private StringBuilder messageLog;
 
     public BattleSystem(Hero hero, Enemy enemy, StatusChecker statusChecker) {
         this.random = new Random();
@@ -24,7 +24,7 @@ public class BattleSystem {
         this.heroSkillChosen = 0;
         this.heroAction = 0;
         this.enemyAction = 0;
-        this.message = "";
+        this.messageLog = new StringBuilder();
     }
 
     public void setEnemy(Enemy enemy) {
@@ -46,25 +46,27 @@ public class BattleSystem {
             }
         }
         this.statusChecker.checkStatusConditions();
+        messageLog.append(statusChecker.getMessageLog());
+        statusChecker.clearMessageLog();
     }
 
     private void heroTurn() {
         switch (this.heroSkillChosen) {
             case 1:
                 this.heroAction = this.hero.ElementSkillA();
-                message += "===== Heroi usou Skill 1 =====\n";
+                messageLog.append("===== Heroi usou Skill 1 =====\n");
                 break;
             case 2:
                 this.heroAction = this.hero.ElementSkillB();
-                message += "===== Heroi usou Skill 2 =====\n";
+                messageLog.append("===== Heroi usou Skill 2 =====\n");
                 break;
             case 3:
                 this.heroAction = this.hero.ElementSkillC();
-                message += "===== Heroi usou Skill 3 =====\n";
+                messageLog.append("===== Heroi usou Skill 3 =====\n");
                 break;
             case 4:
                 this.heroAction = this.hero.ElementSkillD();
-                message += "===== Heroi usou Skill 4 =====\n";
+                messageLog.append("===== Heroi usou Skill 4 =====\n");
                 break;
             default:
                 this.heroAction = 0;
@@ -83,10 +85,12 @@ public class BattleSystem {
             case 2:
                 if (this.hero.getElementInt() == 4) {
                     this.hero.setHp(this.hero.getHp() + this.heroAction);
-                    message += this.hero.getName() + " ganhou " + this.heroAction + " de escudo\n";
+                    messageLog.append(this.hero.getName()).append(" ganhou ").append(this.heroAction)
+                            .append(" de escudo\n");
                 } else if (this.hero.getElementInt() == 5) {
                     this.hero.increaseHp(this.heroAction);
-                    message += this.hero.getName() + " se curou em " + this.heroAction + " de vida\n";
+                    messageLog.append(this.hero.getName()).append(" se curou em ").append(this.heroAction)
+                            .append(" de vida\n");
                 } else {
                     switch (this.hero.getElementInt()) {
                         case 1:
@@ -114,12 +118,14 @@ public class BattleSystem {
                 break;
             case 3:
                 this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-                message += this.hero.getName() + " causou " + this.heroAction + " de dano com Skill 3\n";
+                messageLog.append(this.hero.getName()).append(" causou ").append(this.heroAction)
+                        .append(" de dano com Skill 3\n");
                 ShowEnemyHP();
                 break;
             case 4:
                 this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-                message += this.hero.getName() + " causou " + this.heroAction + " de dano com Skill 4\n";
+                messageLog.append(this.hero.getName()).append(" causou ").append(this.heroAction)
+                        .append(" de dano com Skill 4\n");
                 ShowEnemyHP();
                 break;
         }
@@ -128,7 +134,8 @@ public class BattleSystem {
     private void enemyTurn() {
         if (!this.enemy.isStunned()) {
             this.enemySkillChosen = this.random.nextInt(2) + 1;
-            message += "\n===== " + this.enemy.getName() + " usou a ação " + this.enemySkillChosen + " =====\n";
+            messageLog.append("\n===== ").append(this.enemy.getName()).append(" usou a ação ")
+                    .append(this.enemySkillChosen).append(" =====\n");
             if (this.enemySkillChosen == 1) {
                 this.enemyAction = this.enemy.basicAttack();
                 this.hero.setHp(this.hero.getHp() - this.enemyAction);
@@ -143,23 +150,27 @@ public class BattleSystem {
 
     private void ShowEnemyHP() {
         if (this.enemy.getHealth() <= 0) {
-            message += this.enemy.getName() + " tomou " + this.heroAction + " de dano! Vida atual: 0/"
-                    + this.enemy.getMaximumHP() + "\n";
-            message += this.hero.getName() + " venceu a batalha!\n";
+            messageLog.append(this.enemy.getName()).append(" tomou ").append(this.heroAction)
+                    .append(" de dano! Vida atual: 0/")
+                    .append(this.enemy.getMaximumHP()).append("\n");
+            messageLog.append(this.hero.getName()).append(" venceu a batalha!\n");
         } else {
-            message += this.enemy.getName() + " tomou " + this.heroAction + " de dano! Vida atual: "
-                    + this.enemy.getHealth() + "/" + this.enemy.getMaximumHP() + "\n";
+            messageLog.append(this.enemy.getName()).append(" tomou ").append(this.heroAction)
+                    .append(" de dano! Vida atual: ")
+                    .append(this.enemy.getHealth()).append("/").append(this.enemy.getMaximumHP()).append("\n");
         }
     }
 
     private void ShowHeroHP() {
         if (this.hero.getHp() <= 0) {
-            message += this.hero.getName() + " tomou " + this.enemyAction + " de dano! Vida atual: 0/"
-                    + this.hero.getMaximumHP() + "\n";
-            message += this.enemy.getName() + " venceu a batalha!\n";
+            messageLog.append(this.hero.getName()).append(" tomou ").append(this.enemyAction)
+                    .append(" de dano! Vida atual: 0/")
+                    .append(this.hero.getMaximumHP()).append("\n");
+            messageLog.append(this.enemy.getName()).append(" venceu a batalha!\n");
         } else {
-            message += this.hero.getName() + " tomou " + this.enemyAction + " de dano! Vida atual: "
-                    + this.hero.getHp() + "/" + this.hero.getMaximumHP() + "\n";
+            messageLog.append(this.hero.getName()).append(" tomou ").append(this.enemyAction)
+                    .append(" de dano! Vida atual: ")
+                    .append(this.hero.getHp()).append("/").append(this.hero.getMaximumHP()).append("\n");
         }
     }
 
@@ -172,18 +183,19 @@ public class BattleSystem {
     }
 
     public String getMessage() {
-        return message;
+        return messageLog.toString();
     }
 
     public void setHeroSkill(int skill) {
         this.heroSkillChosen = skill;
+
     }
 
     public void startBattle() {
         System.out.println("Iniciando batalha...");
-        message = ""; // Reset message log
-        message = "Batalha entre " + hero.getName() + " e " + enemy.getName() + "\n";
-        System.out.println("Mensagem de batalha: " + message);
+        messageLog = new StringBuilder(); // Reset message log
+        messageLog.append("Batalha entre ").append(hero.getName()).append(" e ").append(enemy.getName()).append("\n");
+        System.out.println("Mensagem de batalha: " + messageLog);
         this.heroBattleSpeed = this.random.nextInt(21) + this.hero.getSpd();
         this.enemyBattleSpeed = this.random.nextInt(21) + this.enemy.getSpd();
         performTurn();

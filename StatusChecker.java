@@ -1,10 +1,12 @@
 public class StatusChecker {
     private Enemy enemy;
     private Hero hero;
+    private StringBuilder messageLog;
 
     public StatusChecker(Enemy enemy, Hero hero) {
         this.enemy = enemy;
         this.hero = hero;
+        this.messageLog = new StringBuilder();
     }
 
     public void setEnemy(Enemy enemy) {
@@ -43,32 +45,32 @@ public class StatusChecker {
     }
 
     private void handlePoisoned() {
-        System.out.println(enemy.getName() + " ficou envenenado!\n");
+        messageLog.append(enemy.getName()).append(" ficou envenenado!\n");
         enemy.decreaseHealth(5);
     }
 
     private void handleFrozen() {
-        System.out.println(enemy.getName() + " está congelado!\n");
+        messageLog.append(enemy.getName()).append(" está congelado!\n");
     }
 
     private void handleSleeping() {
-        System.out.println(enemy.getName() + " dormiu!\n");
+        messageLog.append(enemy.getName()).append(" dormiu!\n");
     }
 
     private void handleBlind() {
-        System.out.println(enemy.getName() + " ficou cego!\n");
+        messageLog.append(enemy.getName()).append(" ficou cego!\n");
     }
 
     private void handleBurning() {
-        System.out.println(enemy.getName() + " está queimando!\n");
+        messageLog.append(enemy.getName()).append(" está queimando!\n");
     }
 
     private void handleSeeded() {
-        System.out.println("Cresceram sementes em " + enemy.getName() + "!\n");
+        messageLog.append("\nCresceram sementes em ").append(enemy.getName()).append("!\n");
     }
 
     private void handleStunned() {
-        System.out.println(enemy.getName() + " está atordoado!\n");
+        messageLog.append(enemy.getName()).append(" está atordoado!\n");
     }
 
     public void poisonEnemy() {
@@ -108,5 +110,13 @@ public class StatusChecker {
         enemy.setSleeping(false);
         enemy.setBaseAttack(enemy.getNormalAtk());
         enemy.setStunned(false);
+    }
+
+    public String getMessageLog() {
+        return messageLog.toString();
+    }
+
+    public void clearMessageLog() {
+        messageLog.setLength(0);
     }
 }
