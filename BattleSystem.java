@@ -180,7 +180,10 @@ public class BattleSystem {
     }
 
     public void startBattle() {
+        System.out.println("Iniciando batalha...");
         message = ""; // Reset message log
+        message = "Batalha entre " + hero.getName() + " e " + enemy.getName() + "\n";
+        System.out.println("Mensagem de batalha: " + message);
         this.heroBattleSpeed = this.random.nextInt(21) + this.hero.getSpd();
         this.enemyBattleSpeed = this.random.nextInt(21) + this.enemy.getSpd();
         performTurn();

@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Floors {
     private Hero hero;
@@ -13,34 +15,49 @@ public class Floors {
     }
 
     public void startAdventure() {
-        while (hero.getHp() > 0) {
-            enemy = generateEnemyForCurrentFloor();
-            this.battleSystem = new BattleSystem(hero, enemy, new StatusChecker(enemy, hero));
-            BattleSystemGUI battleGUI = new BattleSystemGUI(battleSystem, floor);
-            // System.out.println(hero.showStats());
-            // System.out.println(hero.getWeaponInt());
-            // System.out.println(hero.getElementInt());
-            waitForBattleToEnd(battleGUI);
-
-            if (hero.getHp() > 0) {
-                floor++;
-                hero.setExp(floor + 5);
-                if (hero.getExp() >= hero.getMaximumEXP())
-                    hero.heroLevelUp();
-                showStoreScreen();
-            }
-        }
-        showGameOverMessage();
+        processNextBattle();
     }
 
-    private void waitForBattleToEnd(BattleSystemGUI battleGUI) {
-        while (battleGUI.isVisible()) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    private void processNextBattle() {
+        if (hero.getHp() <= 0) {
+            showGameOverMessage();
+            return;
         }
+
+        enemy = generateEnemyForCurrentFloor();
+        this.battleSystem = new BattleSystem(hero, enemy, new StatusChecker(enemy, hero));
+
+        SwingUtilities.invokeLater(() -> {
+            BattleSystemGUI battleGUI = new BattleSystemGUI(battleSystem, floor);
+            battleGUI.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (hero.getHp() > 0) {
+                        floor++;
+                        hero.setExp(floor + 5);
+                        if (hero.getExp() >= hero.getMaximumEXP()) {
+                            hero.heroLevelUp();
+                        }
+                        showStoreScreen();
+                    } else {
+                        showGameOverMessage();
+                    }
+                }
+            });
+        });
+    }
+
+    private void showStoreScreen() {
+        SwingUtilities.invokeLater(() -> {
+            StoreScreen storeScreen = new StoreScreen(this.hero);
+            storeScreen.setVisible(true);
+            storeScreen.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    processNextBattle();
+                }
+            });
+        });
     }
 
     private Enemy generateEnemyForCurrentFloor() {
@@ -50,19 +67,6 @@ public class Floors {
         enemy.setBaseAttack(5 + (floor * 2));
         enemy.setMaximumHP(enemy.getHealth());
         return enemy;
-    }
-
-    private void showStoreScreen() {
-        StoreScreen storeScreen = new StoreScreen(this.hero);
-        storeScreen.setVisible(true);
-
-        while (storeScreen.isVisible()) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private void showGameOverMessage() {

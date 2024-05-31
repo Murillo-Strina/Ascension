@@ -66,6 +66,8 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
+        System.out.println("GUI criada com sucesso!");
     }
 
     @Override
@@ -79,19 +81,21 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         } else if (e.getSource() == skill4Button) {
             battleSystem.setHeroSkill(4);
         }
-        battleSystem.startBattle();
-        updateGUI();
-        reenableButtons();
+        new Thread(() -> {
+            battleSystem.startBattle();
+            SwingUtilities.invokeLater(() -> {
+                updateGUI();
+                reenableButtons();
 
-        if (battleSystem.getHero().getHp() <= 0 || battleSystem.getEnemy().getHealth() <= 0) {
-            synchronized (this) {
-                this.setVisible(false);
-                this.notify();
-            }
-        }
+                if (battleSystem.getHero().getHp() <= 0 || battleSystem.getEnemy().getHealth() <= 0) {
+                    dispose();
+                }
+            });
+        }).start();
     }
 
     public void updateGUI() {
+        System.out.println("Atualizando GUI...");
         heroHPLabel.setText("Hero HP: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
         enemyHPLabel.setText(
                 "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());

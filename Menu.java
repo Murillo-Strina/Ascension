@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class Menu extends JFrame implements ActionListener {
     private JLabel gameTitle;
     private JButton newGame, generalScore, exit;
-    Hero hero = new Hero("", "");
+    private Hero hero;
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -19,34 +19,35 @@ public class Menu extends JFrame implements ActionListener {
 
     public Menu() {
         super("Ascension");
+        hero = new Hero("", "");
+
         gameTitle = new JLabel("Ascension");
         gameTitle.setOpaque(true);
         gameTitle.setBackground(Color.GRAY);
         gameTitle.setHorizontalAlignment(JLabel.CENTER);
         gameTitle.setFont(new Font("Algerian", Font.PLAIN, 30));
+
         newGame = new JButton("Iniciar Aventura");
         generalScore = new JButton("Pontuação");
         exit = new JButton("Sair");
-        Dimension buttonSize = new Dimension(30, 40);
-        newGame.setPreferredSize(buttonSize);
-        generalScore.setPreferredSize(buttonSize);
-        exit.setPreferredSize(buttonSize);
-        Container box = getContentPane();
-        box.setLayout(new BorderLayout());
-        JPanel buttonsPanel = new JPanel(new GridLayout(3, 1, 10, 10));
-        box.add(gameTitle, BorderLayout.NORTH);
 
-        buttonsPanel.add(newGame);
-        buttonsPanel.add(generalScore);
-        buttonsPanel.add(exit);
-        box.add(buttonsPanel);
         newGame.addActionListener(this);
         generalScore.addActionListener(this);
         exit.addActionListener(this);
+
+        JPanel buttonsPanel = new JPanel(new GridLayout(3, 1, 10, 10));
+        buttonsPanel.add(newGame);
+        buttonsPanel.add(generalScore);
+        buttonsPanel.add(exit);
+
+        Container box = getContentPane();
+        box.setLayout(new BorderLayout());
+        box.add(gameTitle, BorderLayout.NORTH);
+        box.add(buttonsPanel, BorderLayout.CENTER);
+
         setSize(500, 200);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     public void startGame() {
@@ -57,17 +58,17 @@ public class Menu extends JFrame implements ActionListener {
             hero.setGender(inputGender);
             hero.setLevel(hero.getLevel());
             JOptionPane.showMessageDialog(null, "Aventureiro(a) criado!");
+
+            String[] elementsList = { "Pyro", "Hydro", "Electro", "Dendro", "Cryo", "Geo" };
+            String chooseElement = (String) JOptionPane.showInputDialog(null,
+                    "Escolha o tipo do elemento que " + inputName + " irá possuir: ", "Escolha",
+                    JOptionPane.QUESTION_MESSAGE, null, elementsList, elementsList[0]);
+            element(chooseElement);
+            selectWeapon(inputName);
         } else {
             JOptionPane.showMessageDialog(null, "É necessário criar um nome válido!");
             startGame();
-            return;
         }
-        String[] elementsList = { "Pyro", "Hydro", "Electro", "Dendro", "Cryo", "Geo" };
-        String chooseElement = (String) JOptionPane.showInputDialog(null,
-                "Escolha o tipo do elemento que " + inputName + " irá possuir: ", "Escolha",
-                JOptionPane.QUESTION_MESSAGE, null, elementsList, elementsList[0]);
-        element(chooseElement);
-        selectWeapon(inputName);
     }
 
     public void selectWeapon(String adventureName) {
@@ -121,9 +122,8 @@ public class Menu extends JFrame implements ActionListener {
                     hero.setWeaponInt(2);
                     JOptionPane.showMessageDialog(null, "Arma escolhida!");
                     this.dispose();
-                    new Floors(hero); // Start adventure
                 } else if (choice == JOptionPane.NO_OPTION) {
-                    selectWeapon("");
+                    selectWeapon(hero.getName());
                 }
                 break;
             case "Arco":
@@ -135,9 +135,8 @@ public class Menu extends JFrame implements ActionListener {
                     hero.setWeaponInt(4);
                     JOptionPane.showMessageDialog(null, "Arma escolhida!");
                     this.dispose();
-                    new Floors(hero); // Start adventure
                 } else if (choice == JOptionPane.NO_OPTION) {
-                    selectWeapon("");
+                    selectWeapon(hero.getName());
                 }
                 break;
             case "Catalisador":
@@ -149,9 +148,8 @@ public class Menu extends JFrame implements ActionListener {
                     hero.setWeaponInt(3);
                     JOptionPane.showMessageDialog(null, "Arma escolhida!");
                     this.dispose();
-                    new Floors(hero); // Start adventure
                 } else if (choice == JOptionPane.NO_OPTION) {
-                    selectWeapon("");
+                    selectWeapon(hero.getName());
                 }
                 break;
             case "Lança":
@@ -163,9 +161,8 @@ public class Menu extends JFrame implements ActionListener {
                     hero.setWeaponInt(5);
                     JOptionPane.showMessageDialog(null, "Arma escolhida!");
                     this.dispose();
-                    new Floors(hero); // Start adventure
                 } else if (choice == JOptionPane.NO_OPTION) {
-                    selectWeapon("");
+                    selectWeapon(hero.getName());
                 }
                 break;
             case "Espada":
@@ -177,14 +174,17 @@ public class Menu extends JFrame implements ActionListener {
                     hero.setWeaponInt(1);
                     JOptionPane.showMessageDialog(null, "Arma escolhida!");
                     this.dispose();
-                    new Floors(hero); // Start adventure
                 } else if (choice == JOptionPane.NO_OPTION) {
-                    selectWeapon("");
+                    selectWeapon(hero.getName());
                 }
                 break;
             default:
                 JOptionPane.showMessageDialog(null, "Escolha uma opção válida!");
-                selectWeapon("");
+                selectWeapon(hero.getName());
         }
+    }
+
+    public Hero getHero() {
+        return hero;
     }
 }
