@@ -94,7 +94,6 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
     }
 
     public void updateGUI() {
-        System.out.println("Atualizando GUI...");
         heroHPLabel.setText("Hero HP: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
         enemyHPLabel.setText(
                 "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
