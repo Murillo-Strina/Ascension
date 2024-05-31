@@ -34,7 +34,7 @@ public class Floors {
                     if (hero.getHp() > 0) {
                         floor++;
                         hero.increaseEXP(floor + 5);
-                        hero.increaseMoney(floor * 100);
+                        hero.increaseMoney(floor * 50);
                         if (hero.getExp() >= hero.getMaximumEXP()) {
                             hero.heroLevelUp();
                         }
