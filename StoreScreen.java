@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class StoreScreen extends JFrame implements ActionListener {
     private JLabel storeTitle;
@@ -125,7 +124,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         boolean purchaseSuccessful = store.buyItem(chooseItem);
         if (purchaseSuccessful) {
             JOptionPane.showMessageDialog(this, "Item comprado!");
-            setVisible(false);
+            dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         } else {
             JOptionPane.showMessageDialog(this, "Moedas insuficientes ou item inválido.");
         }
