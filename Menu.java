@@ -112,11 +112,13 @@ public class Menu extends JFrame implements ActionListener {
 
     private void weapon(String chooseWeapon) {
         int choice;
+        String [] options = {"Sim", "Não"};
         switch (chooseWeapon) {
             case "Espadão":
                 Claymore claymore = new Claymore();
                 JOptionPane.showMessageDialog(null, claymore.StatusWeapon());
-                choice = JOptionPane.showConfirmDialog(null, "Deseja escolher o espadão?");
+                choice = JOptionPane.showOptionDialog(null, "Deseja escolher o arco?", "Escolha Arma",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 if (choice == JOptionPane.YES_OPTION) {
                     hero.setWeapon(claymore);
                     hero.setWeaponInt(2);
@@ -129,7 +131,8 @@ public class Menu extends JFrame implements ActionListener {
             case "Arco":
                 Bow bow = new Bow();
                 JOptionPane.showMessageDialog(null, bow.StatusWeapon());
-                choice = JOptionPane.showConfirmDialog(null, "Deseja escolher o arco?");
+                choice = JOptionPane.showOptionDialog(null, "Deseja escolher o arco?", "Escolha Arma",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 if (choice == JOptionPane.YES_OPTION) {
                     hero.setWeapon(bow);
                     hero.setWeaponInt(4);
@@ -138,11 +141,15 @@ public class Menu extends JFrame implements ActionListener {
                 } else if (choice == JOptionPane.NO_OPTION) {
                     selectWeapon(hero.getName());
                 }
+                else if (choice == JOptionPane.CANCEL_OPTION){
+                    
+                }
                 break;
             case "Catalisador":
                 Catalysts catalysts = new Catalysts();
                 JOptionPane.showMessageDialog(null, catalysts.StatusWeapon());
-                choice = JOptionPane.showConfirmDialog(null, "Deseja escolher o catalisador?");
+                choice = JOptionPane.showOptionDialog(null, "Deseja escolher o catalisador?", "Escolha Arma",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 if (choice == JOptionPane.YES_OPTION) {
                     hero.setWeapon(catalysts);
                     hero.setWeaponInt(3);
@@ -155,7 +162,8 @@ public class Menu extends JFrame implements ActionListener {
             case "Lança":
                 Polearm polearm = new Polearm();
                 JOptionPane.showMessageDialog(null, polearm.StatusWeapon());
-                choice = JOptionPane.showConfirmDialog(null, "Deseja escolher a lança?");
+                choice = JOptionPane.showOptionDialog(null, "Deseja escolher a lança?", "Escolha Arma",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 if (choice == JOptionPane.YES_OPTION) {
                     hero.setWeapon(polearm);
                     hero.setWeaponInt(5);
@@ -168,7 +176,8 @@ public class Menu extends JFrame implements ActionListener {
             case "Espada":
                 Sword sword = new Sword();
                 JOptionPane.showMessageDialog(null, sword.StatusWeapon());
-                choice = JOptionPane.showConfirmDialog(null, "Deseja escolher a Espada?");
+                choice = JOptionPane.showOptionDialog(null, "Deseja escolher a espada?", "Escolha Arma",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 if (choice == JOptionPane.YES_OPTION) {
                     hero.setWeapon(sword);
                     hero.setWeaponInt(1);

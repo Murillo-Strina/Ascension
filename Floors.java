@@ -40,6 +40,8 @@ public class Floors {
                         }
                         showStoreScreen();
                     } else {
+                        CrudBD cBD = new CrudBD();
+                        cBD.incluirReg(hero);
                         showGameOverMessage();
                     }
                 }
