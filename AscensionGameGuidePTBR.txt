@@ -1,0 +1,38 @@
+===== GUIA DO JOGO ASCENSION =====
+
+Índice:
+1 - Mecânicas do jogo
+2 - Os elementos
+3 - As armas
+
+=== 1 - Mecânicas do jogo ===
+
+O jogador e o inimigo irão batalhar em turnos alternados. Para definir quem irá iniciar o combate, o jogo se baseará no atributo Velocidade do jogador.
+Em seus turnos, os jogadores poderão escolher 4 habilidades, duas de sua arma e duas de seu elemento.
+Cada arma e cada elemento possuem habilidades específicas, a serem listadas em suas respectivas sessões.
+Após o combate, o jogador irá acessar a loja e poderá escolher um item para comprar para o auxiliar em sua jornada.
+
+=== 2 - Os elementos ===
+
+Foram criados 6 elementos: Pyro, Electro, Hydro, Dendro, Geo e Cryo.
+Cada elemento tem uma habilidade genérica para dar uma quantidade de dano e uma específica do elemento, com efeitos variáveis.
+As habilidades específicas estão listadas abaixo:
+
+Dendro - faz crescer sementes em um inimigo. Cada rodada, as sementes causam dano no inimigo e curam o herói.
+Hydro - cura o herói.
+Pyro - reduz o ataque do inimigo.
+Geo - cria um escudo para o herói.
+Electro - atordoa o inimigo por uma rodada.
+Cryo - reduz a velocidade do inimigo.
+
+=== 3 - As armas ===
+
+Foram criadas 5 armas: Espada, Espadão, Catalisador, Lança e Arco.
+Cada arma também possui uma habilidade genérica de dano e uma específica com efeitos variáveis.
+As habilidades específicas estão listadas abaixo:
+
+Espada - realiza 4 cortes no inimigo.
+Espadão - dá um corte de dano massivo no inimigo.
+Arco - escolhe aleatoriamente entre 4 flechas: sonífera, fumaça, venenosa e congelante.
+Catalisador - cura o usuário.
+Lança - bloqueia o próximo ataque e devolve dano crítico ao inimigo.
