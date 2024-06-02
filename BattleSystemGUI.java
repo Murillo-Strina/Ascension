@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.*;
 
 public class BattleSystemGUI extends JFrame implements ActionListener {
@@ -36,10 +37,10 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         JPanel statusPanel = new JPanel();
         statusPanel.setLayout(new GridLayout(1, 3));
         heroHPLabel = new JLabel(
-                "Hero HP: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
+                "HP do Herói: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
         enemyHPLabel = new JLabel(
-                "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
-        floorLabel = new JLabel("Floor: " + floor);
+                "HP do Inimigo: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
+        floorLabel = new JLabel("Piso: " + floor);
         statusPanel.add(heroHPLabel);
         statusPanel.add(floorLabel);
         statusPanel.add(enemyHPLabel);
@@ -94,11 +95,13 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
     }
 
     public void updateGUI() {
-        heroHPLabel.setText("Hero HP: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
+        System.out.println("Atualizando GUI...");
+        heroHPLabel.setText(
+                "HP do Herói: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
         enemyHPLabel.setText(
-                "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
+                "HP do Inimigo: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
         messageArea.setText(battleSystem.getMessage());
-        floorLabel.setText("Floor: " + floor);
+        floorLabel.setText("Piso: " + floor);
     }
 
     private void reenableButtons() {
