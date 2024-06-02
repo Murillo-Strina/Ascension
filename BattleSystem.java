@@ -185,7 +185,9 @@ public class BattleSystem {
     public void startBattle() {
         System.out.println("Iniciando batalha...");
         message = new StringBuilder();
-        message.append("Batalha entre ").append(hero.getName()).append(" e ").append(enemy.getName()).append("\n");
+        message.append("=====================\nBatalha entre ").append(hero.getName()).append(" e ")
+                .append(enemy.getName())
+                .append("\n=====================\n");
         System.out.println("Mensagem de batalha: " + message);
         this.heroBattleSpeed = this.random.nextInt(21) + this.hero.getSpd();
         this.enemyBattleSpeed = this.random.nextInt(21) + this.enemy.getSpd();

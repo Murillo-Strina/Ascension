@@ -9,7 +9,6 @@ public class Enemy {
     private int level;
     private int spd;
     private int maximumHP;
-    private int normalAttack;
     private boolean isPoisoned;
     private boolean isFrozen;
     private boolean isSleeping;
@@ -50,21 +49,12 @@ public class Enemy {
         this.name = names.get(r.nextInt(names.size()));
         this.health = 30;
         this.baseAttack = 5;
-        this.normalAttack = this.baseAttack;
         this.maximumHP = 30;
         this.accuracy = r.nextInt(101);
         this.isPoisoned = false;
         this.isFrozen = false;
         this.isSleeping = false;
         this.isBlind = false;
-    }
-
-    public void setNormalAtk(int normalAttack) {
-        this.normalAttack = normalAttack;
-    }
-
-    public int getNormalAtk() {
-        return this.normalAttack;
     }
 
     public boolean isPoisoned() {

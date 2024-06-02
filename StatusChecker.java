@@ -108,7 +108,7 @@ public class StatusChecker {
         enemy.setFrozen(false);
         enemy.setBlind(false);
         enemy.setSleeping(false);
-        enemy.setBaseAttack(enemy.getNormalAtk());
+        enemy.setBaseAttack(enemy.basicAttack());
         enemy.setStunned(false);
     }
 

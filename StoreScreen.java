@@ -11,8 +11,8 @@ public class StoreScreen extends JFrame implements ActionListener {
 
     public StoreScreen(Hero hero) {
         super("Loja");
-        this.hero = hero; // Save the hero reference
-        this.store = new Store(hero); // Pass the hero to the store
+        this.hero = hero;
+        this.store = new Store(hero);
         createGUI();
     }
 
@@ -24,18 +24,18 @@ public class StoreScreen extends JFrame implements ActionListener {
         storeTitle.setFont(new Font("Algerian", Font.PLAIN, 30));
 
         showStore = new JTextArea(store.showStore());
-        showStore.setFont(new Font("Algerian", Font.PLAIN, 20)); // Increase font size here
+        showStore.setFont(new Font("Algerian", Font.PLAIN, 20));
         showStore.setEditable(false);
         showStore.setLineWrap(true);
         showStore.setWrapStyleWord(true);
 
-        showHeroStats = new JButton("Mostrar Status do Herói"); // New button for hero stats
+        showHeroStats = new JButton("Mostrar Status do Herói");
         detailArtifact = new JButton("Detalhes do artefato");
         detailPotion = new JButton("Detalhes da poção");
         detailFood = new JButton("Detalhe da comida");
         selectItems = new JButton("Selecionar");
 
-        showHeroStats.addActionListener(this); // Add action listener
+        showHeroStats.addActionListener(this);
         detailArtifact.addActionListener(this);
         detailPotion.addActionListener(this);
         detailFood.addActionListener(this);
@@ -52,13 +52,12 @@ public class StoreScreen extends JFrame implements ActionListener {
         JScrollPane scrollPane = new JScrollPane(showStore);
         centerPanel.add(scrollPane);
 
-        JPanel buttonsPanel = new JPanel(new GridLayout(5, 1, 10, 10)); // Adjust grid layout to fit the new button
-                                                                        // order
-        buttonsPanel.add(showHeroStats); // Add the new button to the panel
+        JPanel buttonsPanel = new JPanel(new GridLayout(5, 1, 10, 10));
+        buttonsPanel.add(showHeroStats);
         buttonsPanel.add(detailArtifact);
         buttonsPanel.add(detailPotion);
         buttonsPanel.add(detailFood);
-        buttonsPanel.add(selectItems); // Add the select button at the end
+        buttonsPanel.add(selectItems);
         centerPanel.add(buttonsPanel);
 
         box.add(centerPanel, BorderLayout.CENTER);
@@ -78,7 +77,7 @@ public class StoreScreen extends JFrame implements ActionListener {
             showFoods();
         else if (e.getSource() == selectItems)
             showItemsToBuy();
-        else if (e.getSource() == showHeroStats) // Handle hero stats button click
+        else if (e.getSource() == showHeroStats)
             showHeroStats();
     }
 

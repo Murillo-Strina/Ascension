@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.Random;
-import java.util.random.*;
 
 public class Floors {
     private Hero hero;
@@ -69,9 +68,9 @@ public class Floors {
     private Enemy generateEnemyForCurrentFloor() {
         Random r = new Random();
         Enemy enemy = new Enemy();
-        enemy.setLevel(floor);
+        enemy.setLevel(hero.getLevel());
         enemy.setHealth(hero.getMaximumHP());
-        enemy.setBaseAttack(hero.getBaseAttack() + r.nextInt(21));
+        enemy.setBaseAttack(hero.getBaseAttack() + r.nextInt(41));
         enemy.setMaximumHP(hero.getMaximumHP());
         return enemy;
     }
