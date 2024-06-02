@@ -1,16 +1,20 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.Random;
+import java.util.random.*;
 
 public class Floors {
     private Hero hero;
     private Enemy enemy;
     private int floor;
     private BattleSystem battleSystem;
+    private Random random;
 
     public Floors(Hero hero) {
         this.hero = hero;
         this.floor = 1;
         startAdventure();
+        this.random = new Random();
     }
 
     public void startAdventure() {
@@ -33,8 +37,8 @@ public class Floors {
                 public void windowClosed(WindowEvent e) {
                     if (hero.getHp() > 0) {
                         floor++;
-                        hero.increaseEXP(floor + 5);
-                        hero.increaseMoney(floor * 50);
+                        hero.increaseEXP(floor + random.nextInt(10));
+                        hero.increaseMoney(random.nextInt(201, 501));
                         if (hero.getExp() >= hero.getMaximumEXP()) {
                             hero.heroLevelUp();
                         }
@@ -63,11 +67,12 @@ public class Floors {
     }
 
     private Enemy generateEnemyForCurrentFloor() {
+        Random r = new Random();
         Enemy enemy = new Enemy();
         enemy.setLevel(floor);
-        enemy.setHealth(30 + (floor * 5));
-        enemy.setBaseAttack(5 + (floor * 2));
-        enemy.setMaximumHP(enemy.getHealth());
+        enemy.setHealth(hero.getMaximumHP());
+        enemy.setBaseAttack(hero.getBaseAttack() + r.nextInt(21));
+        enemy.setMaximumHP(hero.getMaximumHP());
         return enemy;
     }
 
