@@ -34,6 +34,7 @@ public class Floors {
             battleGUI.addWindowListener(new WindowAdapter() {
                 public void windowClosed(WindowEvent e) {
                     if (hero.getHp() > 0) {
+                        JOptionPane.showMessageDialog(null, "K.O! "+hero.getName()+" venceu!");
                         floor++;
                         hero.increaseEXP(floor + 5);
                         hero.increaseMoney(random.nextInt(201, 501));
