@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.*;
 
 public class BattleSystemGUI extends JFrame implements ActionListener {
@@ -37,10 +36,10 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         JPanel statusPanel = new JPanel();
         statusPanel.setLayout(new GridLayout(1, 3));
         heroHPLabel = new JLabel(
-                "HP do Herói: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
+                "Hero HP: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
         enemyHPLabel = new JLabel(
-                "HP do Inimigo: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
-        floorLabel = new JLabel("Piso: " + floor);
+                "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
+        floorLabel = new JLabel("Floor: " + floor);
         statusPanel.add(heroHPLabel);
         statusPanel.add(floorLabel);
         statusPanel.add(enemyHPLabel);
@@ -70,7 +69,6 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
         System.out.println("GUI criada com sucesso!");
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == skill1Button) {
             battleSystem.setHeroSkill(1);
@@ -95,13 +93,11 @@ public class BattleSystemGUI extends JFrame implements ActionListener {
     }
 
     public void updateGUI() {
-        System.out.println("Atualizando GUI...");
-        heroHPLabel.setText(
-                "HP do Herói: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
+        heroHPLabel.setText("Hero HP: " + battleSystem.getHero().getHp() + "/" + battleSystem.getHero().getMaximumHP());
         enemyHPLabel.setText(
-                "HP do Inimigo: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
+                "Enemy HP: " + battleSystem.getEnemy().getHealth() + "/" + battleSystem.getEnemy().getMaximumHP());
         messageArea.setText(battleSystem.getMessage());
-        floorLabel.setText("Piso: " + floor);
+        floorLabel.setText("Floor: " + floor);
     }
 
     private void reenableButtons() {

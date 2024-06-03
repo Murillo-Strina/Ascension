@@ -56,7 +56,13 @@ public class BattleSystem {
                 break;
             case 2:
                 this.heroAction = this.hero.ElementSkillB();
-                message.append(String.format("Herói usou Habilidade 2 e causou %d de dano%n", this.heroAction));
+                if (hero.getElementInt() == 5) {
+                    message.append(String.format("Herói usou Habilidade 2 e curou %d de HP%n", this.heroAction));
+                } else if (hero.getElementInt() == 4) {
+                    message.append(String.format("Herói usou Habilidade 2 e ganhou escudo de %d%n", this.heroAction));
+                } else {
+                    message.append(String.format("Herói usou Habilidade 2 e causou %d de dano%n", this.heroAction));
+                }
                 break;
             case 3:
                 this.heroAction = this.hero.getWeapon().WeaponSkillA();
@@ -88,28 +94,16 @@ public class BattleSystem {
                     this.hero.increaseHp(this.heroAction);
                     message.append(String.format("%s curou %d de HP%n", this.hero.getName(), this.heroAction));
                 } else {
-                    switch (this.hero.getElementInt()) {
-                        case 1:
-                            this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-                            this.enemy.setSeeded(true);
-                            ShowEnemyHP();
-                            break;
-                        case 2:
-                            this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-                            this.enemy.setBurning(true);
-                            ShowEnemyHP();
-                            break;
-                        case 3:
-                            this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-                            this.enemy.setFrozen(true);
-                            ShowEnemyHP();
-                            break;
-                        case 4:
-                            this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
-                            this.enemy.setStunned(true);
-                            ShowEnemyHP();
-                            break;
-                    }
+                    this.enemy.setHealth(this.enemy.getHealth() - this.heroAction);
+                    if (this.hero.getElementInt() == 1)
+                        this.enemy.setSeeded(true);
+                    if (this.hero.getElementInt() == 2)
+                        this.enemy.setBurning(true);
+                    if (this.hero.getElementInt() == 3)
+                        this.enemy.setFrozen(true);
+                    if (this.hero.getElementInt() == 4)
+                        this.enemy.setStunned(true);
+                    ShowEnemyHP();
                 }
                 break;
             case 3:
@@ -186,11 +180,10 @@ public class BattleSystem {
         System.out.println("Iniciando batalha...");
         message = new StringBuilder();
         message.append("=====================\nBatalha entre ").append(hero.getName()).append(" e ")
-                .append(enemy.getName())
-                .append("\n=====================\n");
+                .append(enemy.getName()).append("\n=====================\n");
         System.out.println("Mensagem de batalha: " + message);
         this.heroBattleSpeed = this.random.nextInt(21) + this.hero.getSpd();
-        this.enemyBattleSpeed = this.random.nextInt(21) + this.enemy.getSpd();
+        this.enemyBattleSpeed = this.random.nextInt(50) + this.enemy.getSpd();
         performTurn();
     }
 }

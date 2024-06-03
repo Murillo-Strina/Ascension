@@ -171,7 +171,7 @@ public class Enemy {
         }
 
         if (this.accuracy >= 30) {
-            return (this.baseAttack + 2);
+            return (this.baseAttack);
         } else {
             return 0;
         }

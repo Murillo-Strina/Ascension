@@ -32,11 +32,10 @@ public class Floors {
         SwingUtilities.invokeLater(() -> {
             BattleSystemGUI battleGUI = new BattleSystemGUI(battleSystem, floor);
             battleGUI.addWindowListener(new WindowAdapter() {
-                @Override
                 public void windowClosed(WindowEvent e) {
                     if (hero.getHp() > 0) {
                         floor++;
-                        hero.increaseEXP(floor + random.nextInt(10));
+                        hero.increaseEXP(floor + 5);
                         hero.increaseMoney(random.nextInt(201, 501));
                         if (hero.getExp() >= hero.getMaximumEXP()) {
                             hero.heroLevelUp();
@@ -68,10 +67,10 @@ public class Floors {
     private Enemy generateEnemyForCurrentFloor() {
         Random r = new Random();
         Enemy enemy = new Enemy();
-        enemy.setLevel(hero.getLevel());
-        enemy.setHealth(hero.getMaximumHP());
-        enemy.setBaseAttack(hero.getBaseAttack() + r.nextInt(41));
-        enemy.setMaximumHP(hero.getMaximumHP());
+        enemy.setLevel(floor);
+        enemy.setBaseAttack(hero.getBaseAttack() + floor * 2);
+        enemy.setMaximumHP(enemy.getHealth() + floor * 3);
+        enemy.setHealth(enemy.getMaximumHP());
         return enemy;
     }
 

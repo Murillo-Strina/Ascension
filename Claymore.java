@@ -31,9 +31,16 @@ public class Claymore implements Weapon {
         hero.increaseSpeed(this.spd);
     }
 
-    public int WeaponSkillB() {
-        this.isBlocking = true;
-        return this.spd = 100;
+    public int WeaponSkillA() {
+        this.accuracy = r.nextInt(101);
+        if (this.accuracy >= 30) {
+            if (CritAttack() != 1) {
+                return critDamage;
+            } else
+                return attack;
+        } else {
+            return 0;
+        }
     }
 
     public int CritAttack() {
@@ -56,7 +63,7 @@ public class Claymore implements Weapon {
         return msg;
     }
 
-    public int WeaponSkillA() {
+    public int WeaponSkillB() {
         int totalDamage = 0;
         for (int i = 1; i <= this.upgrade + 2; i++) {
             this.accuracy = r.nextInt(101);

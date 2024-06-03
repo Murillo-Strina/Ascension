@@ -33,9 +33,9 @@ public class Sword implements Weapon {
         this.accuracy = r.nextInt(101);
         if (this.accuracy >= 30) {
             if (CritAttack() != 1) {
-                return critDamage * 3 + upgrade;
+                return critDamage;
             } else
-                return attack * 3 + upgrade;
+                return attack;
         } else {
             return 0;
         }

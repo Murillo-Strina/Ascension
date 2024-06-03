@@ -39,8 +39,11 @@ public class Bow implements Weapon {
 
     public int WeaponSkillA() {
         this.accuracy = r.nextInt(101);
-        if (this.accuracy >= 20) {
-            return critDamage * upgrade;
+        if (this.accuracy >= 30) {
+            if (CritAttack() != 1) {
+                return critDamage;
+            } else
+                return attack;
         } else {
             return 0;
         }

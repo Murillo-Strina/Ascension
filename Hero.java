@@ -33,7 +33,7 @@ public class Hero {
         this.coins = 1000;
         this.spd = 10;
         this.maximumHP = 20;
-        this.elementInt = 0;
+        this.elementInt = getElementInt();
         this.weaponInt = getWeaponInt();
     }
 

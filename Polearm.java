@@ -31,7 +31,7 @@ public class Polearm implements Weapon {
         hero.increaseSpeed(this.spd);
     }
 
-    public int WeaponSkillA() {
+    public int WeaponSkillB() {
         if (this.accuracy >= 30) {
             if (CritAttack() != 1) {
                 return critDamage * 2 + upgrade;
@@ -61,12 +61,16 @@ public class Polearm implements Weapon {
         return msg;
     }
 
-    public int WeaponSkillB() {
-        this.isBlocking = true;
-        if (CritAttack() != 1) {
-            return critDamage;
-        } else
-            return attack;
+    public int WeaponSkillA() {
+        this.accuracy = r.nextInt(101);
+        if (this.accuracy >= 30) {
+            if (CritAttack() != 1) {
+                return critDamage;
+            } else
+                return attack;
+        } else {
+            return 0;
+        }
     }
 
     public int NormalizeAttack() {
